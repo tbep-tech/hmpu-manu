@@ -1,54 +1,80 @@
 ---
+format: 
+  docx:
+    reference-doc: my_styles.docx
 title: "Addressing climate change and development pressures in an urban estuary through habitat restoration planning"
 shorttitle: "Tampa Bay watershed habitat restoration planning"
-output: 
-  bookdown::word_document2:
-    reference_docx: my_styles.docx
-    number_sections: false
-    pandoc_args:
-      - --lua-filter=templates/scholarly-metadata.lua
-      - --lua-filter=templates/author-info-blocks.lua
-always_allow_html: true
 bibliography: refs.bib
 author: 
-  - Gary E Raulerson:
-      email: gmangrove@gmail.com
-      institute: [TBEP]
-      correspondence: false
-  - Douglas E Robison:
-      email: DRobison@esassoc.com 
-      institute: [ESA]
-      correspondence: false
-  - Marcus W Beck:
-      email: mbeck@tbep.org
-      institute: [TBEP]
-      correspondence: true
-  - Maya C Burke:
-      email: mburke@tbep.org
-      institute: [TBEP]
-      corrspondence: false
-  - Justin Saarinen:
-      email: justinsaarinen@gmail.com 
-      institute: [ESA]
-      correspondence: false
-  - Christine Sciarrino:
-      email: CSciarrino@esassoc.com 
-      institute: [ESA]
-      correspondence: false
-  - Edward T Sherwood:
-      email: esherwood@tbep.org 
-      institute: [TBEP]
-      correspondence: false
-  - David A Tomasko:
-      email: dave@sarasotabay.org
-      institute: [SBEP]
-      correspondence: false
-institute:
-  - TBEP: Tampa Bay Estuary Program, St. Petersburg, Florida 33701 USA
-  - ESA: Environmental Science Associates, Tampa, Florida 33609 USA
-  - SBEP: Sarasota Bay Estuary Program, Sarasota, Florida 34236 USA
-link-citations: true
+  - name: Gary E Raulerson
+    email: gmangrove@gmail.com
+    affiliations: 
+      - ref: tbep
+    attributes:
+      corresponding: false
+  - name: Douglas E Robison
+    email: DRobison@esassoc.com 
+    affilations: 
+      - ref: esa
+    attributes:
+      corresponding: false
+  - name: Marcus W Beck
+    email: mbeck@tbep.org
+    affilations: 
+      - ref: tbep
+    attributes:
+      corresponding: true
+  - name: Maya C Burke
+    email: mburke@tbep.org
+    affilations: 
+      - ref: tbep
+    attributes:
+      corresponding: false
+  - name: Justin Saarinen
+    email: justinsaarinen@gmail.com 
+    affilations: 
+      - ref: esa
+    attributes:
+      corresponding: false
+  - name: Christine Sciarrino
+    email: CSciarrino@esassoc.com 
+    affilations: 
+      - ref: esa
+    attributes:
+      corresponding: false
+  - name: Edward T Sherwood
+    email: esherwood@tbep.org 
+    affilations: 
+      - ref: tbep
+    attributes:
+      corresponding: false
+  - name: David A Tomasko
+    email: dave@sarasotabay.org
+    affilations: 
+      - ref: sbep
+    attributes:
+      corresponding: false
+affiliations:
+  - id: tbep
+    name: Tampa Bay Estuary Program
+    city: St. Petersburg
+    state: Florida 
+    postal-code: 33701 
+    country: USA
+  - id: esa
+    name: Environmental Science Associates
+    city: Tampa
+    state: Florida
+    postal-code: 33609 
+    country: USA
+  - id: sbep
+    name: Sarasota Bay Estuary Program
+    city: Sarasota
+    state: Florida
+    postal-code: 34236
+    country: USA
 ---
+
 
 # Abstract
 
