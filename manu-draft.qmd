@@ -213,4 +213,26 @@ The establishment of targets and goals considering climate change, development, 
 
 Our new approach will continue to engage multiple partner agencies, non-governmental organizations, and private citizens in the successful implementation of the restoration plan. Emphases will include recognition of land types particularly vulnerable to climate change or development stressors and these needs will be communicated to restoration partners. Consistent education, targeted funding opportunities, and reporting will also ensure that these newly established targets and goals lead to successful restoration projects, land acquisition, and enhanced ecosystem services.
 
+## Figure captions
+
+Figure 1: Spatial analysis workflow for the opportunity assessment and reservation potential
+
+Figure 2: Land use change as Sankey
+
+Figure 3: Subtidal habitat change as Sankey
+
+Figure 4: Map of opportunity assessment
+
+Figure 5: Map of restoration potential
+
+## Tables
+
+Table 1: Land use change table
+
+Table 2: Subtidal change table
+
+Table 3: Summary of the opportunity assessment analysis
+
+Table 4: Targets
+
 ## References
