@@ -47,7 +47,16 @@ institute:
 filters: 
   - templates/scholarly-metadata.lua
   - templates/author-info-blocks.lua
+  
+execute: 
+  echo: false
+  warning: false
 ---
+
+```{r, results = 'hide'}
+library(knitr)
+library(here)
+```
 
 ## Abstract
 
@@ -110,6 +119,8 @@ To quantify the extent of tidal creeks, GIS data [@JEI16; @JEI20] was clipped to
 We quantified past restoration efforts in each of the major habitat types to guide decisions on future targets and goals. Information regarding habitat restoration and enhancement activities in the Tampa Bay area over the past 40 years were compiled, reviewed, and consolidated into a single, consistent geospatial database. Data were gathered from the SWFWMD Surface Water Improvement and Management Program, Federal Government Performance and Results Act (GPRA) reporting, the Tampa Bay Water Atlas (<https://www.tampabay.wateratlas.usf.edu/>), Tampa Bay Watch, and the Technical Advisory Committee of the TBEP. Primary data collected included project name, year, description, lead partner, size (area or length), and latitude and longitude. Data gaps were supplemented by archival research, site visits, contacting the responsible entities, and documenting the knowledge of local professionals. Living shoreline projects, including seawall enhancements and oyster reef modules, were inventoried separately.
 
 ### Creating and combining opportunity layers
+
+Figure \@ref(fig:gisworkflow).
 
 Three strata, distinct geographic breakpoints in the watershed where different habitat management and restoration activities could take place, were created to establish the process for target and goal-setting within this framework. The first is the coastal stratum, which extends from the local Mean Lower Low Water elevation to elevation 5 feet above Mean Sea Level and is likely to be affected by frequent tidal flooding or inundation by 2070. The coastal stratum is the zone where emergent tidal wetland restoration would be conducted and includes low lying coastal uplands which serve as important tidal wetland buffers that will be critically important in the future as lands reserved to accommodate ideal wetland migration in response to sea level rise. The river floodplain stratum includes all hydrologically contiguous forested and non-forested wetlands within the river and stream corridors of the Tampa Bay watershed. Floodplain corridors provide vital watershed functions including fish and wildlife habitat and migratory pathways, floodwater attenuation and storage, erosion control, and delivery of complex organic matter to the estuarine food web. Finally, the upland stratum encompasses those areas outside of the coastal and river floodplain strata, including native upland habitats as well as hydrologically isolated wetlands. These habitats provide important aquifer recharge and wildlife habitat functions.
 
@@ -213,9 +224,12 @@ The establishment of targets and goals considering climate change, development, 
 
 Our new approach will continue to engage multiple partner agencies, non-governmental organizations, and private citizens in the successful implementation of the restoration plan. Emphases will include recognition of land types particularly vulnerable to climate change or development stressors and these needs will be communicated to restoration partners. Consistent education, targeted funding opportunities, and reporting will also ensure that these newly established targets and goals lead to successful restoration projects, land acquisition, and enhanced ecosystem services.
 
-## Figure captions
+## Figures
 
-Figure 1: Spatial analysis workflow for the opportunity assessment and reservation potential
+```{r gisworkflow}
+#| fig.cap: 'Spatial analysis workflow used to identify opportunity areas for habitat conservation and restoration in the Tampa Bay watershed.  Workflows are divided into binning of land use/land cover categories into relevant habitat types and spatial overlay of datasets to identify the opportunity areas.'
+knitr::include_graphics(here('figs/gisworkflow.png'))
+```
 
 Figure 2: Land use change as Sankey
 
