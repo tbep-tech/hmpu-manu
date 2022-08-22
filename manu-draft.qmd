@@ -65,6 +65,7 @@ library(officedown)
 
 load(file = here('tabs/subttab.RData'))
 load(file = here('tabs/acretab.RData'))
+load(file = here('tabs/currtab.RData'))
 ```
 
 ## Abstract
@@ -273,7 +274,10 @@ subttab
 acretab
 ```
 
-Table 3: Summary of the opportunity assessment analysis
+```{r}
+#| tbl-cap: Summary of habitat restoration opportunities in the Tampa Bay watershed.  Summaries are based on 2017 land use data, 2018 subtidal data, best estimates for habitat types not in existing GIS layers (e.g., living shoreline), and current extent of existing and proposed conservation lands.
+currtab
+```
 
 Table 4: Targets
 

@@ -1,6 +1,10 @@
 library(flextable)
 library(tidyverse)
 library(here)
+library(sf)
+library(units)
+
+source(here('R/funcs.R'))
 
 # subtidal habitat change ---------------------------------------------------------------------
 
@@ -35,8 +39,6 @@ thm <- function(x){
     flextable::border_inner() %>%
     flextable::width(width = 0.7, j = 1) %>%
     flextable::width(width = 5.8 / (ncol_keys(.) - 1), j = 2:ncol_keys(.)) %>%
-    flextable::padding(padding = 0, part = 'all') %>%
-    flextable::fontsize(size = 7, part = 'all') %>%
     flextable::padding(padding = 0, part = 'all') %>%
     flextable::fontsize(size = 7, part = 'all')
 }
@@ -94,8 +96,6 @@ thm <- function(x){
     flextable::width(width = 0.7, j = 1) %>%
     flextable::width(width = 5.8 / (ncol_keys(.) - 1), j = 2:ncol_keys(.)) %>%
     flextable::padding(padding = 0, part = 'all') %>%
-    flextable::fontsize(size = 7, part = 'all') %>%
-    flextable::padding(padding = 0, part = 'all') %>%
     flextable::fontsize(size = 7, part = 'all')
 }
 
@@ -107,3 +107,36 @@ acretab <- flextable::flextable(totab, col_keys = grep('^chgcol$', names(totab),
 
 # acretab
 save(acretab, file = here('tabs/acretab.RData'))
+
+# current extent table ------------------------------------------------------------------------
+
+fluccs <- read.csv(here('data', 'FLUCCShabsclass.csv'), stringsAsFactors = F)
+
+lulcfl <- 'lulc2017'
+subtfl <- 'sgdat2018'
+
+# from 01_inputs
+load(here('data', paste0(lulcfl, '.RData')))
+load(here('data', paste0(subtfl, '.RData')))
+lulc <- get(lulcfl)
+subt <- get(subtfl)
+data(hard)
+data(arti)
+data(tidt)
+data(livs)
+data(coastal)
+data(strata)
+
+# data copied from commit e6026f831e90cffca8ea906c8fe53c85ceb5746a in hmpu-workflow
+# these are the original HMPU layers in the report
+data("restorelyr")
+data("nativelyr")
+
+curtab <- curex_fun(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, strata, nativelyr, restorelyr)
+
+currtab <- curtab %>%
+  flextable::width(width = 6.5 / ncol_keys(.)) %>%
+  flextable::padding(padding = 0, part = 'all') %>%
+  flextable::fontsize(size = 8, part = 'all')
+
+save(currtab, file = here('tabs/currtab.RData'))

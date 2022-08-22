@@ -171,9 +171,8 @@ fixgeo <- function(dat){
 # fluccs is fluccs data frame
 # nativelyr is current existing/proposed native sf object
 # restorelyr is current existing/proposed restoration layer
-# cap is chr string for caption
 # crplyr is optional cropping layer
-curex_fun <- function(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, strata, nativelyr, restorelyr, cap, crplyr = NULL){
+curex_fun <- function(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, strata, nativelyr, restorelyr, crplyr = NULL){
 
   # crop all sf objects by optional crop layer
   if(!is.null(crplyr)){
@@ -247,22 +246,28 @@ curex_fun <- function(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, strat
 
   # current summary
   cursum <- bind_rows(lulcsum, subtsum, hardsum, artisum, tidtsum, livssum) %>%
+    rename(
+      Hectares = Acres,
+      Kilometers = Miles
+    ) %>%
     mutate(
+      Hectares = Hectares / 2.471,
+      Kilometers = Kilometers * 1.609,
       unis = case_when(
-        is.na(Acres) ~ 'mi',
-        is.na(Miles) ~ 'ac'
+        is.na(Hectares) ~ 'km',
+        is.na(Kilometers) ~ 'ha'
       ),
       `Current Extent` = case_when(
-        is.na(Acres) ~ Miles,
-        is.na(Miles) ~ Acres
+        is.na(Hectares) ~ Kilometers,
+        is.na(Kilometers) ~ Hectares
       )
     ) %>%
     left_join(strata, ., by = 'HMPU_TARGETS') %>%
     filter(!HMPU_TARGETS %in% 'Total Intertidal') %>%
     mutate(
       unis = case_when(
-        is.na(unis) & HMPU_TARGETS %in% c('Living Shorelines', 'Tidal Tributaries') ~ 'mi',
-        is.na(unis) & !HMPU_TARGETS %in% c('Living Shorelines', 'Tidal Tributaries') ~ 'ac',
+        is.na(unis) & HMPU_TARGETS %in% c('Living Shorelines', 'Tidal Tributaries') ~ 'km',
+        is.na(unis) & !HMPU_TARGETS %in% c('Living Shorelines', 'Tidal Tributaries') ~ 'ha',
         T ~ unis
       ),
       `Current Extent` = case_when(
@@ -277,29 +282,29 @@ curex_fun <- function(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, strat
 
   nativesum <- nativelyr %>%
     mutate(
-      Acres = st_area(.),
-      Acres = set_units(Acres, acres),
-      Acres = as.numeric(Acres),
+      Hectares = st_area(.),
+      Hectares = set_units(Hectares, hectares),
+      Hectares = as.numeric(Hectares),
       typ = paste('native', typ)
     ) %>%
     st_set_geometry(NULL) %>%
     group_by(typ, HMPU_TARGETS) %>%
-    summarise(Acres = sum(Acres), .groups = 'drop') %>%
+    summarise(Hectares = sum(Hectares), .groups = 'drop') %>%
     arrange(typ, HMPU_TARGETS) %>%
-    spread(typ, Acres)
+    spread(typ, Hectares)
 
   # restorable summary
 
   restoresum <- restorelyr %>%
     mutate(
-      Acres = st_area(.),
-      Acres = set_units(Acres, acres),
-      Acres = as.numeric(Acres),
+      Hectares = st_area(.),
+      Hectares = set_units(Hectares, hectares),
+      Hectares = as.numeric(Hectares),
       typ = paste('restorable', typ)
     ) %>%
     st_set_geometry(NULL) %>%
     group_by(typ, HMPU_TARGETS) %>%
-    summarise(Acres = sum(Acres, na.rm = T), .groups = 'drop') %>%
+    summarise(Hectares = sum(Hectares, na.rm = T), .groups = 'drop') %>%
     arrange(typ, HMPU_TARGETS)
 
   # create duplicate rows for non-specific targets
@@ -322,14 +327,14 @@ curex_fun <- function(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, strat
         T ~ HMPU_TARGETS
       )
     ) %>%
-    spread(typ, Acres, fill = 0) %>%
+    spread(typ, Hectares, fill = 0) %>%
     mutate(
       `total restorable` = `restorable Existing` + `restorable Proposed`
     )
 
   # final table
 
-  tab <- curexcmp_fun(cursum, nativesum, restoresum, cap)
+  tab <- curexcmp_fun(cursum, nativesum, restoresum)
 
   return(tab)
 
@@ -338,7 +343,7 @@ curex_fun <- function(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, strat
 # get current extent table with legacy values from HMPU
 #
 # cap is chr string for caption
-curexleg_fun <- function(cap){
+curexleg_fun <- function(){
 
   # cursum
   cursum <- structure(list(
@@ -373,14 +378,14 @@ curexleg_fun <- function(cap){
 
   # final table
 
-  tab <- curexcmp_fun(cursum, nativesum, restoresum, cap)
+  tab <- curexcmp_fun(cursum, nativesum, restoresum)
 
   return(tab)
 
 }
 
 # final table compilation function for curex_fun, curexleg_fun
-curexcmp_fun <- function(cursum, nativesum, restoresum, cap){
+curexcmp_fun <- function(cursum, nativesum, restoresum){
 
   # combine all for table
 
@@ -411,13 +416,13 @@ curexcmp_fun <- function(cursum, nativesum, restoresum, cap){
         T ~ `native Existing`
       ),
       `total restorable` = case_when(
-        HMPU_TARGETS == 'Seagrasses' ~ '14,131 ac',
+        HMPU_TARGETS == 'Seagrasses' ~ '5,719 ha',
         HMPU_TARGETS %in% c('Tidal Flats', 'Oyster Bars') ~ 'I/D',
         HMPU_TARGETS %in% c('Living Shorelines', 'Tidal Tributaries') ~ 'LSSM',
         T ~ `total restorable`
       ),
       `restorable Existing` = case_when(
-        HMPU_TARGETS == 'Seagrasses' ~ '14,131 ac',
+        HMPU_TARGETS == 'Seagrasses' ~ '5,719 ha',
         HMPU_TARGETS %in% c('Tidal Flats', 'Oyster Bars') ~ 'I/D',
         T ~ `restorable Existing`
       )
@@ -434,9 +439,6 @@ curexcmp_fun <- function(cursum, nativesum, restoresum, cap){
     )
 
   # make table
-
-  # caption
-  cap <- paste0('<h2>', cap, '</h2>')
 
   tab <- as_grouped_data(allsum, groups = 'Category') %>%
     flextable %>%
@@ -468,17 +470,15 @@ curexcmp_fun <- function(cursum, nativesum, restoresum, cap){
     fontsize(size = 8, part = 'footer') %>%
     align(align = "center", part = "header") %>%
     align(i = c(2:6, 8:12, 14:17), j = 3:8, align = "center", part = "body") %>%
-    bg(i = c(1, 7, 13), bg = 'chartreuse3', part = "body") %>%
-    bg(i = 1, bg = 'grey', part = "header") %>%
-    bg(i = 2, j = 1:2, bg = 'grey', part = "header") %>%
+    # bg(i = c(1, 7, 13), bg = 'chartreuse3', part = "body") %>%
+    # bg(i = 1, bg = 'grey', part = "header") %>%
+    # bg(i = 2, j = 1:2, bg = 'grey', part = "header") %>%
     border_outer(part = 'body') %>%
     border_outer(part = 'header') %>%
     border_inner_h(part = 'body') %>%
     border_inner_v(part = 'body') %>%
     border_inner_h(part = 'header') %>%
-    border_inner_v(part = 'header') %>%
-    set_caption(caption = cap, html_escape = F) %>%
-    font(part = 'all', fontname = 'Roboto')
+    border_inner_v(part = 'header')
 
   return(tab)
 
