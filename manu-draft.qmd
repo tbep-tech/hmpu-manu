@@ -64,6 +64,7 @@ library(officer)
 library(officedown)
 
 load(file = here('tabs/subttab.RData'))
+load(file = here('tabs/acretab.RData'))
 ```
 
 ## Abstract
@@ -164,11 +165,15 @@ Total seagrass coverage has increased by 7,027 ha (75%) during the 30-year perio
 
 @fig-chgdatalluv
 
+Table 2
+
 Between 1990 and 2017, the suite of emergent tidal wetlands (mangroves, salt barrens, and salt marshes) experienced a net gain of 725 ha (10%, Table 3b). The current estimate of the extent of mangrove forests in Tampa Bay is 6,192 ha. Mangrove forest coverage increased by 684 ha (12%). Salt marshes in Tampa Bay cover 1,844 ha, and coverage increased by 30 ha (2%). However, from 1990 to 2017, it is estimated that a net area of 219 ha of salt marshes converted from salt marsh to mangrove habitat (<https://tbep-tech.github.io/landuse/>). The 2017 estimate of the extent of salt barrens in Tampa Bay is 201 ha, and coverage has increased by 14 ha (7%) during the 27-year period of record (Table 3b). Based on GIS data from Janicki Environmental and Mote Marine Laboratory [@JEI16; @JEI20], the extent of tidal creek habitat in the Tampa Bay watershed is approximately 623 km (Table 2). No trend analysis is available.
 
 #### Supratidal habitats
 
 @fig-chgdatalluv
+
+Table 2
 
 As determined in the 2017 land use/land cover update, the most current estimate of the extent of non-coastal native upland habitats in the Tampa Bay watershed is 56,899 ha, and the extent of "coastal uplands" (defined as below the 5-foot contour) in the Tampa Bay watershed is 1,465 ha (Table 2). Over the 27-year period of record, the suite of native upland habitats has experienced a net loss of 37,051 ha (39%, Table 3b).
 
@@ -263,7 +268,10 @@ Our new approach will continue to engage multiple partner agencies, non-governme
 subttab
 ```
 
-Table 2: Land use change table
+```{r}
+#| tbl-cap: Change over time in hectares for intertidal and supratidal habitats in Tampa Bay.  Columns show years with available data and the final two columns show the change and percent change from 1990 to 2017.
+acretab
+```
 
 Table 3: Summary of the opportunity assessment analysis
 
