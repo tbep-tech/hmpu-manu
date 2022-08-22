@@ -571,7 +571,7 @@ oppdat_fun <- function(nativersrv, restorersrv, nativelyr, restorelyr, coastal, 
 # buffdist is buffer for boundary layer
 #
 # requires ggsn, ggmap, ggplot, sf
-oppmap_fun <- function(oppmap, bndry, ttl, northloc = 'tr', scaleloc = 'tl', buffdist = 0.01){
+oppmap_fun <- function(oppmap, bndry, northloc = 'tr', scaleloc = 'tl', buffdist = 0.01){
 
   # colors
   cols <- list(
@@ -636,10 +636,6 @@ oppmap_fun <- function(oppmap, bndry, ttl, northloc = 'tr', scaleloc = 'tl', buf
       axis.ticks = element_line(colour = 'grey'),
       panel.border = element_rect(colour = 'grey', fill = NA)
     ) +
-    labs(
-      title = ttl,
-      caption = 'More info: https://tbep.org/habitat-master-plan-update/'
-      ) +
     annotation_scale(location = scaleloc) +
     annotation_north_arrow(location = northloc, which_north = "true", height = grid::unit(0.75, "cm"),
                            width = grid::unit(0.75, "cm"))
@@ -661,7 +657,7 @@ oppmap_fun <- function(oppmap, bndry, ttl, northloc = 'tr', scaleloc = 'tl', buf
 # stht is scalebar height
 #
 # requires ggsn, ggmap, ggplot, sf
-restmap_fun <- function(restmap, bndry, ttl, northloc = 'topright', scaleloc = 'topleft', stsz = 3, buffdist = 0.01, scldst = 3, stht = 0.02){
+restmap_fun <- function(restmap, bndry, northloc = 'topright', scaleloc = 'topleft', stsz = 3, buffdist = 0.01, scldst = 3, stht = 0.02){
 
   # colors
   cols <- list(
@@ -709,7 +705,7 @@ restmap_fun <- function(restmap, bndry, ttl, northloc = 'topright', scaleloc = '
 
   # plot
   p <- ggmap(bsmap1_transparent) +
-    geom_sf(data = tomap, aes(fill = HMPU_TA), color = NA, inherit.aes = F, alpha = 0.8) +
+    geom_sf(data = tomap, aes(fill = HMPU_TARGETS), color = NA, inherit.aes = F, alpha = 0.8) +
     geom_sf(data = bndry, fill = NA, color = 'black', inherit.aes = F, size = 0.3) +
     scale_fill_manual(values = cols, drop = F) +
     theme(
@@ -723,10 +719,6 @@ restmap_fun <- function(restmap, bndry, ttl, northloc = 'topright', scaleloc = '
       panel.background = element_rect(fill = 'white'),
       axis.ticks = element_line(colour = 'grey'),
       panel.border = element_rect(colour = 'grey', fill = NA)
-    ) +
-    labs(
-      title = ttl,
-      caption = 'More info: https://tbep.org/habitat-master-plan-update/'
     ) +
     annotation_scale(location = scaleloc) +
     annotation_north_arrow(location = northloc, which_north = "true", height = grid::unit(0.75, "cm"),

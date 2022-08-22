@@ -120,7 +120,7 @@ We quantified past restoration efforts in each of the major habitat types to gui
 
 ### Creating and combining opportunity layers
 
-Figure @fig-gisworkflow
+@fig-gisworkflow
 
 Three strata, distinct geographic breakpoints in the watershed where different habitat management and restoration activities could take place, were created to establish the process for target and goal-setting within this framework. The first is the coastal stratum, which extends from the local Mean Lower Low Water elevation to elevation 5 feet above Mean Sea Level and is likely to be affected by frequent tidal flooding or inundation by 2070. The coastal stratum is the zone where emergent tidal wetland restoration would be conducted and includes low lying coastal uplands which serve as important tidal wetland buffers that will be critically important in the future as lands reserved to accommodate ideal wetland migration in response to sea level rise. The river floodplain stratum includes all hydrologically contiguous forested and non-forested wetlands within the river and stream corridors of the Tampa Bay watershed. Floodplain corridors provide vital watershed functions including fish and wildlife habitat and migratory pathways, floodwater attenuation and storage, erosion control, and delivery of complex organic matter to the estuarine food web. Finally, the upland stratum encompasses those areas outside of the coastal and river floodplain strata, including native upland habitats as well as hydrologically isolated wetlands. These habitats provide important aquifer recharge and wildlife habitat functions.
 
@@ -144,7 +144,7 @@ All acquired and created GIS layers (Table 1) were converted to 10m x 10m raster
 
 #### Subtidal habitats
 
-Figure @fig-subtchgdatalluv
+@fig-subtchgdatalluv
 
 While no trend information is available, the best cumulative estimate of natural hard bottom extent in Tampa Bay is 171 ha (Table 2). Oyster bars covered 69 ha (Table 2) in 2018, and a 30% (6 ha) increase reflected since mapping began in 2014 (Table 3a) probably represents improved ground-truthing and photointerpretation of oyster bar signatures from aerial photography. Twelve artificial reefs in Tampa Bay are managed by Hillsborough, Manatee, and Pinellas Counties. Surface area estimates were not available for the Manatee and Pinellas County reefs, but assuming an average size of 4.2 ha, based on the Hillsborough County reefs, the total coverage of artificial reefs in Tampa Bay is estimated to be approximately 67 ha (Table 2).
 
@@ -152,11 +152,13 @@ Total seagrass coverage has increased by 7,027 ha (75%) during the 30-year perio
 
 #### Intertidal habitats
 
-Figure @fig-chgdatalluv
+@fig-chgdatalluv
 
 Between 1990 and 2017, the suite of emergent tidal wetlands (mangroves, salt barrens, and salt marshes) experienced a net gain of 725 ha (10%, Table 3b). The current estimate of the extent of mangrove forests in Tampa Bay is 6,192 ha. Mangrove forest coverage increased by 684 ha (12%). Salt marshes in Tampa Bay cover 1,844 ha, and coverage increased by 30 ha (2%). However, from 1990 to 2017, it is estimated that a net area of 219 ha of salt marshes converted from salt marsh to mangrove habitat (<https://tbep-tech.github.io/landuse/>). The 2017 estimate of the extent of salt barrens in Tampa Bay is 201 ha, and coverage has increased by 14 ha (7%) during the 27-year period of record (Table 3b). Based on GIS data from Janicki Environmental and Mote Marine Laboratory [@JEI16; @JEI20], the extent of tidal creek habitat in the Tampa Bay watershed is approximately 623 km (Table 2). No trend analysis is available.
 
 #### Supratidal habitats
+
+@fig-chgdatalluv
 
 As determined in the 2017 land use/land cover update, the most current estimate of the extent of non-coastal native upland habitats in the Tampa Bay watershed is 56,899 ha, and the extent of "coastal uplands" (defined as below the 5-foot contour) in the Tampa Bay watershed is 1,465 ha (Table 2). Over the 27-year period of record, the suite of native upland habitats has experienced a net loss of 37,051 ha (39%, Table 3b).
 
@@ -168,6 +170,8 @@ A total of 460 projects were documented between 1971 and 2019 (Table 4), address
 
 ### Habitat restoration opportunities
 
+@fig-oppmap
+
 In 2017, 1,555 km^2^ of land (26.5%) in the Tampa Bay watershed above the MLLW line was classified as natural and 2,144 km^2^ (37%) was considered restorable. Developed areas in the Tampa Bay watershed encompassed 2,172 km^2^ (36.5%) of the 5,872 km^2^ watershed area. Between 2014 and 2017, the developed footprint increased by seven percent (7%, Fig 2).
 
 The Tampa Bay watershed included a total of 1,260 km^2^ of existing conservation lands, either publicly owned or in conservation easements. However, excluding subtidal areas owned by the State of Florida results in a total of 816 km^2^ of conservation lands, about 13.9% of the watershed area occurring above the MLLW line. (Fig 3). Proposed conservation lands in the Tampa Bay watershed total 1,254 km^2^. The mapped proposed conservation lands generally link eastward and provide wildlife connectivity to the larger-scale Florida Wildlife Corridor (Fig 3).
@@ -175,6 +179,8 @@ The Tampa Bay watershed included a total of 1,260 km^2^ of existing conservation
 Reservation lands, from the MLLW line landward to elevation 5-feet (NAVD 88), currently (2017) include 4,622 ha proposed for conservation in the Tampa Bay watershed, with 3,303 ha of native habitats and 1,319 ha of restorable habitats (Fig 1).
 
 Xeric soils were roughly aggregated in an east-west band through the middle of the watershed (Fig 4). Approximately 2,107 km2 was classified as xeric, while 3,760 km2 was classified as mesic/hydric.
+
+@fig-restmap
 
 Integration of all of the opportunity layers provides a summary of the available restoration for the TBEP habitats of interest (Table 5). The "Native Habitats" columns show the total current extent as well as the portion of the current extent occurring on existing conservation lands and proposed conservation lands, respectively. The "Restorable Habitats" columns show the total restoration opportunity as well as the portion of the total restoration opportunity on existing and proposed conservation lands. The majority of restoration opportunities on existing conservation lands are for native uplands and freshwater wetlands (Table 5). However, there are approximately 627 ha of emergent tidal wetland restoration opportunities on existing conservation lands, including 530 ha applicable to higher salinity mangrove forests and salt barrens, and 16 ha applicable to lower salinity salt marsh (e.g., *Juncus roemerianus*) restoration and creation.
 
@@ -230,15 +236,15 @@ Our new approach will continue to engage multiple partner agencies, non-governme
 
 ## Figures
 
-![Spatial analysis workflow used to identify opportunity areas for habitat conservation and restoration in the Tampa Bay watershed. Workflows are divided into binning of land use/land cover categories into relevant habitat types and spatial overlay of datasets to identify the opportunity areas.](figs/gisworkflow.png){#fig-gisworkflow fig-align="center"}
+![Spatial analysis workflow used to identify opportunity areas and restoration potential in the Tampa Bay watershed. Workflows are divided into binning of land use/land cover categories into relevant habitat types and spatial overlay of datasets to identify the opportunity areas.](figs/gisworkflow.png){#fig-gisworkflow fig-align="center"}
 
 ![Change analysis of habitat categories in the subtidal strata of the Tampa Bay watershed.  The left column shows relative areas in 1988 and the right column shows relative areas in 2018 for each habitat category. The grey lines show the proportional change of each habitat category between the years.](figs/subtchgdatalluv.png){#fig-subtchgdatalluv fig-align="center"}
 
 ![Change analysis of habitat categories in the intertidal and supratidal strata of the Tampa Bay watershed.  The left column shows relative areas in 1990 and the right column shows relative areas in 2017 for each habitat category. The grey lines show the proportional change of each habitat category between the years.](figs/chgdatalluv.png){#fig-chgdatalluv fig-align="center"}
 
-Figure 4: Map of opportunity assessment
+![Opportunity areas for habitat conservation and reservation in the Tampa Bay watershed.  Green indicates existing conservation, blue indicates proposed conservation, and pink indicates reservations opportunities.  Each category is also grouped into native and restorable habitats.](figs/oppmap.png){#fig-oppmap fig-align="center"}
 
-Figure 5: Map of restoration potential
+![Habitat restoration potential in the Tampa Bay watershed. Areas are identified as those where habitat restoration could target the four identified categories as coastal uplands, freshwater wetlands, native uplands, or tidal wetlands. Categories are based on the opportunity areas and soil types.](figs/restmap.png){#fig-restmap fig-align="center"}
 
 ## Tables
 
