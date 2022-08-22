@@ -9,7 +9,6 @@ library(ggspatial)
 
 source(here('R/funcs.R'))
 
-
 # gis workflow --------------------------------------------------------------------------------
 
 # by hand, original at C:\Users\mbeck\Desktop\TBEP\HMPU personal comp

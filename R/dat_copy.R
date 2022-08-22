@@ -8,7 +8,6 @@ fls <- list.files(here('../hmpu-workflow/data'), full.names = T, pattern = '\\.R
 
 file.copy(fls, to = here('data/'), overwrite = T)
 
-
 #  get R functions ----------------------------------------------------------------------------
 
 file.copy(here('../hmpu-workflow/R/funcs.R'), here('R/'), overwrite = T)
