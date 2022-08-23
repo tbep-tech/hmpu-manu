@@ -60,12 +60,11 @@ library(knitr)
 library(here)
 library(flextable)
 library(dplyr)
-library(officer)
-library(officedown)
 
 load(file = here('tabs/subttab.RData'))
 load(file = here('tabs/acretab.RData'))
 load(file = here('tabs/currtab.RData'))
+load(file = here('tabs/targtab.RData'))
 ```
 
 ## Abstract
@@ -262,6 +261,8 @@ Our new approach will continue to engage multiple partner agencies, non-governme
 
 ![Habitat restoration potential in the Tampa Bay watershed. Areas are identified as those where habitat restoration could target the four identified categories as coastal uplands, freshwater wetlands, native uplands, or tidal wetlands. Categories are based on the opportunity areas and soil types.](figs/restmap.png){#fig-restmap fig-align="center"}
 
+\newpage
+
 ## Tables
 
 ```{r}
@@ -269,16 +270,27 @@ Our new approach will continue to engage multiple partner agencies, non-governme
 subttab
 ```
 
+\newpage
+
 ```{r}
 #| tbl-cap: Change over time in hectares for intertidal and supratidal habitats in Tampa Bay.  Columns show years with available data and the final two columns show the change and percent change from 1990 to 2017.
 acretab
 ```
 
+\newpage
+
 ```{r}
-#| tbl-cap: Summary of habitat restoration opportunities in the Tampa Bay watershed.  Summaries are based on 2017 land use data, 2018 subtidal data, best estimates for habitat types not in existing GIS layers (e.g., living shoreline), and current extent of existing and proposed conservation lands.
+#| tbl-cap: Summary of habitat restoration opportunities in the Tampa Bay watershed.  Summaries are based on 2017 land use data, 2018 subtidal data, best estimates for habitat types not in existing GIS layers, and current extent of existing and proposed conservation lands.
 currtab
 ```
 
-Table 4: Targets
+\newpage
+
+```{r}
+#| tbl-cap: Recommended 2030 targets and 2050 goals for habitat restoration and protection in the Tampa Bay watershed. Targets and goals are based on 2017 land use data, 2018 subtidal data, best estimates for habitat types not in existing GIS layers, and current extent of existing and proposed conservation lands.
+targtab
+```
+
+\newpage
 
 ## References

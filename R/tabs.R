@@ -132,11 +132,47 @@ data(strata)
 data("restorelyr")
 data("nativelyr")
 
-curtab <- curex_fun(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, strata, nativelyr, restorelyr)
+tab <- curex_fun(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, strata, nativelyr, restorelyr)
 
-currtab <- curtab %>%
+currtab <- tab %>%
   flextable::width(width = 6.5 / ncol_keys(.)) %>%
   flextable::padding(padding = 0, part = 'all') %>%
   flextable::fontsize(size = 8, part = 'all')
 
 save(currtab, file = here('tabs/currtab.RData'))
+
+# target table --------------------------------------------------------------------------------
+
+fluccs <- read.csv(here('data', 'FLUCCShabsclass.csv'), stringsAsFactors = F)
+
+lulcfl <- 'lulc2017'
+subtfl <- 'sgdat2018'
+
+# from 01_inputs
+load(here('data', paste0(lulcfl, '.RData')))
+load(here('data', paste0(subtfl, '.RData')))
+lulc <- get(lulcfl)
+subt <- get(subtfl)
+data(hard)
+data(arti)
+data(tidt)
+data(livs)
+data(coastal)
+data(strata)
+data(trgsmetric)
+
+# data copied from commit e6026f831e90cffca8ea906c8fe53c85ceb5746a in hmpu-workflow
+# these are the original HMPU layers in the report
+data(restorelyr)
+
+tab <- target_fun(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, strata, restorelyr, trgsmetric)
+
+targtab <- tab %>%
+  flextable::width(width = 0.45, j = 1) %>%
+  flextable::width(width = 0.66, j = 2:6) %>%
+  flextable::width(width = 2.75, j = 7) %>%
+  fontsize(size = 8, part = 'all') %>%
+  fontsize(size = 7, j = 7, part = 'body') %>%
+  flextable::padding(padding = 0, part = 'all')
+
+save(targtab, file = here('tabs/targtab.RData'))

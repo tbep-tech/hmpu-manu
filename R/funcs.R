@@ -775,9 +775,8 @@ restdat_fun <- function(restorelyr, crplyr = NULL){
 # coastal is coastal stratum sf object
 # fluccs is fluccs data frame
 # restorelyr is current existing/proposed restoration layer
-# trgs is input targets table
-# cap is chr string for caption
-target_fun <- function(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, strata, restorelyr, trgs, cap){
+# trgsmetric is input targets table as metric values (ha, km)
+target_fun <- function(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, strata, restorelyr, trgsmetric){
 
   # lulc area, all categories
   lulcsum <- lulc_est(lulc, coastal, fluccs)
@@ -833,14 +832,20 @@ target_fun <- function(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, stra
 
   # current summary
   cursum <- bind_rows(lulcsum, intrsum, subtsum, hardsum, artisum, tidtsum, livssum) %>%
+    rename(
+      Hectares = Acres,
+      Kilometers = Miles
+    ) %>%
     mutate(
+      Hectares = Hectares / 2.471,
+      Kilometers = Kilometers * 1.609,
       unis = case_when(
-        is.na(Acres) ~ 'mi',
-        is.na(Miles) ~ 'ac'
+        is.na(Hectares) ~ 'km',
+        is.na(Kilometers) ~ 'ha'
       ),
       `Current Extent` = case_when(
-        is.na(Acres) ~ Miles,
-        is.na(Miles) ~ Acres
+        is.na(Hectares) ~ Kilometers,
+        is.na(Kilometers) ~ Hectares
       )
     ) %>%
     inner_join(strata, by = 'HMPU_TARGETS') %>%
@@ -851,14 +856,14 @@ target_fun <- function(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, stra
 
   restoresum <- restorelyr %>%
     mutate(
-      Acres = st_area(.),
-      Acres = set_units(Acres, acres),
-      Acres = as.numeric(Acres),
+      Hectares = st_area(.),
+      Hectares = set_units(Hectares, hectares),
+      Hectares = as.numeric(Hectares),
       typ = paste('restorable', typ)
     ) %>%
     st_set_geometry(NULL) %>%
     group_by(typ, HMPU_TARGETS) %>%
-    summarise(Acres = sum(Acres), .groups = 'drop') %>%
+    summarise(Hectares = sum(Hectares, na.rm = T), .groups = 'drop') %>%
     arrange(typ, HMPU_TARGETS)
 
   # create duplicate rows for non-specific targets
@@ -881,7 +886,7 @@ target_fun <- function(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, stra
         T ~ HMPU_TARGETS
       )
     ) %>%
-    spread(typ, Acres) %>%
+    spread(typ, Hectares) %>%
     mutate(
       `total restorable` = `restorable Existing` + `restorable Proposed`
     ) %>%
@@ -901,7 +906,7 @@ target_fun <- function(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, stra
   restoresum <- bind_rows(restoresum, intrsum)
 
   # final table
-  out <- targetcmp_fun(cursum, restoresum, cap)
+  out <- targetcmp_fun(cursum, restoresum, trgsmetric)
 
   return(out)
 
@@ -940,12 +945,12 @@ targetleg_fun <- function(trgs, cap){
 }
 
 # final table compilation function for target_fun, targetleg_fun
-targetcmp_fun <- function(cursum, restoresum, cap){
+targetcmp_fun <- function(cursum, restoresum, trgsmetric){
 
   # all summary
   allsum <- cursum %>%
     left_join(restoresum, by = 'HMPU_TARGETS') %>%
-    left_join(trgs, ., by = c('Category', 'HMPU_TARGETS')) %>%
+    left_join(trgsmetric, ., by = c('Category', 'HMPU_TARGETS')) %>%
     gather('var', 'val', -Category, -HMPU_TARGETS, -unis, -rationale) %>%
     mutate(
       val = case_when(
@@ -963,7 +968,7 @@ targetcmp_fun <- function(cursum, restoresum, cap){
     dplyr::select(-unis) %>%
     mutate(
       `total restorable` = case_when(
-        HMPU_TARGETS == 'Seagrasses' ~ '14,131 ac',
+        HMPU_TARGETS == 'Seagrasses' ~ '5,719 ha',
         HMPU_TARGETS %in% c('Tidal Flats', 'Oyster Bars', 'Tidal Tributaries') ~ 'I/D',
         HMPU_TARGETS %in% c('Living Shorelines') ~ 'LSSM',
         T ~ `total restorable`
@@ -978,8 +983,6 @@ targetcmp_fun <- function(cursum, restoresum, cap){
       Target2050,
       rationale
     )
-
-  cap <- paste0('<h2>', cap, '</h2>')
 
   tab <- as_grouped_data(allsum, groups = 'Category') %>%
     flextable %>%
@@ -1007,16 +1010,14 @@ targetcmp_fun <- function(cursum, restoresum, cap){
     width(j = 7, width = 4.5) %>%
     align(j = c(2:6), align = "center", part = "header") %>%
     align(i = c(2:6, 8:13, 15:18), j = 3:6, align = "center", part = "body") %>%
-    bg(i = c(1, 7, 14), bg = 'chartreuse3', part = "body") %>%
-    bg(i = 1, bg = 'grey', part = "header") %>%
+    # bg(i = c(1, 7, 14), bg = 'chartreuse3', part = "body") %>%
+    # bg(i = 1, bg = 'grey', part = "header") %>%
     border_outer(part = 'body') %>%
     border_outer(part = 'header') %>%
     border_inner_h(part = 'body') %>%
     border_inner_v(part = 'body') %>%
     border_inner_h(part = 'header') %>%
-    border_inner_v(part = 'header') %>%
-    set_caption(caption = cap, html_escape = F) %>%
-    font(part = 'all', fontname = 'Roboto')
+    border_inner_v(part = 'header')
 
   return(tab)
 
