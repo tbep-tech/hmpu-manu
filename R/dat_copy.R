@@ -11,3 +11,9 @@ file.copy(fls, to = here('data/'), overwrite = T)
 #  get R functions ----------------------------------------------------------------------------
 
 file.copy(here('../hmpu-workflow/R/funcs.R'), here('R/'), overwrite = T)
+
+# fluccslkup ----------------------------------------------------------------------------------
+
+load(file = url('https://github.com/tbep-tech/reasonable-assurance-analysis/raw/main/data/fluccslkup.RData'))
+
+save(fluccslkup, file = here('data/fluccslkup.RData'))

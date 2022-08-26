@@ -5,47 +5,6 @@ library(units)
 
 source(here('R/funcs.R'))
 
-
-# targets as metric (ha, mi) ------------------------------------------------------------------
-
-trgsmetric <- structure(
-  list(
-    Category = structure(
-      c(1L, 1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L, 2L, 2L, 3L, 3L, 3L, 3L),
-      .Label = c("Subtidal", "Intertidal", "Supratidal"),
-      class = "factor"
-      ),
-    HMPU_TARGETS = structure(
-      1:15,
-      .Label = c("Hard Bottom", "Artificial Reefs", "Tidal Flats", "Seagrasses", "Oyster Bars", "Living Shorelines", "Total Intertidal", "Mangrove Forests", "Salt Barrens", "Salt Marshes", "Tidal Tributaries", "Coastal Uplands", "Non-Forested Freshwater Wetlands", "Forested Freshwater Wetlands", "Native Uplands"),
-      class = "factor"
-      ),
-    Target2030 = c(171, 67, 6564, 16188, 89, 34, 8641, 6192, 221, 1945, 6, 1525, 27898, 61628, 57082),
-    Target2050 = c(171, 67, 6564, 16188, 191, 90, 9633, 6192, 322, 2208, 29, 1707, 29052, 61810, 57507),
-    rationale = c(
-      "Protect existing hard bottom; continue to identify new hard bottom area using proven mapping techniques",
-      "Protect existing artificial reefs; enhance habitat complexity where feasible; expand reef area to promote fish and wildlife benefits",
-      "Identify and protect existing persistent tidal flats; assess restoration potential of other non-vegetated subtidal areas",
-      "Protect existing seagrasses; establish new HMPU lower limit of 16,188 hectares; assess restoration potential of non-vegetated subtidal areas",
-      "2030: Protect existing oysters + restore 20 hectares; increase target by 20 hectares each out-decade; consider filtration rate to refine long-term goal; an oyster habitat suitability index (HSI) will inform opportunity space",
-      "2030: Construct 1.6 kilometers of LS each year; includes privately owned seawalls; need better definition of opportunity areas; increase target to 2.4 & 3.2 kilometers per year for out decades",
-      "2030: Protect existing intertidal mosaic + restore 405 hectares (based on hydric soils); increase target by 61 hectares each out-decade; includes the mosaic of mangrove, salt barren, and salt marsh habitats",
-      "Protect existing mangrove forests; restore opportunistically within the intertidal mosaic",
-      "2030: Protect existing salt barrens + restore 20 hectares; increase target by 20 hectares per out decade",
-      "2030: Protect existing low salinity salt marshes + restore 101 hectares; increase target by 20 hectares each out-decade; significant land acquisition and/or Public Private Partnerships required to achieve this 2030 target and 2050 goal",
-      "Inventory mapped tidal tributaries and assess/rank restoration potential; restore ~6.4 kilometers (1%) of urban tidal creek habitat where feasible; increase target by 3.2 kilometers per out decade",
-      "2030: Protect existing coastal uplands + specifically restore 61 hectares (upland restoration total = 243 hectares); increase target by 20 hectares each out decade",
-      "2030: Protect existing non-forested freshwater wetlands + restore 546 hectares; increase target by 20 hectares each out decade",
-      "2030: Protect existing forested freshwater wetlands + restore 61 hectares; increase target by 20 hectares each out decade",
-      "2030: Protect existing native uplands + specifically restore 182 hectares (upland restoration total = 243 hectares); increase target by 20 hectares each out decade; focus on pine flatwoods and protect current extent (22,953 hectares)"
-      )
-    ),
-  class = "data.frame",
-  row.names = c(NA, -15L)
-  )
-
-save(trgsmetric, file = here('data/trgsmetric.RData'))
-
 # LULC change analysis ----------------------------------------------------
 
 data(coastal)
