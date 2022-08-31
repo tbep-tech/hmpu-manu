@@ -208,11 +208,33 @@ restdat <- restdat_fun(restorelyr)
 
 save(restdat, file = here('data/restdat.RData'))
 
-
 # summary of areas in opportunity and restoration potential -----------------------------------
 
 load(file = here('data/oppdat.RData'))
 load(file = here('data/restdat.RData'))
+
+# summarizes area and formats for manu by type in oppareas
+areasumfun <- function(x, flt){
+
+  out <- x %>%
+    filter(grepl(flt, cat)) %>%
+    group_by(var) %>%
+    summarise(
+      val = sum(val),
+      .groups = 'drop'
+    ) %>%
+    mutate(
+      val = case_when(
+        var == 'areaha' ~ paste(formatC(round(val, 0), format = 'd', big.mark = ','), 'ha'),
+        var == 'areaper' ~ paste0(round(val, 1), '%')
+      )
+    ) %>%
+    deframe %>%
+    as.list
+
+  return(out)
+
+}
 
 opparea <- oppdat %>%
   mutate(
@@ -227,51 +249,11 @@ opparea <- oppdat %>%
   ) %>%
   pivot_longer(cols = c('areaha', 'areaper'), names_to = 'var', values_to = 'val')
 
-native <- opparea %>%
-  filter(grepl('Native', cat)) %>%
-  group_by(var) %>%
-  summarise(
-    val = sum(val),
-    .groups = 'drop'
-  ) %>%
-  mutate(
-    val = case_when(
-      var == 'areaha' ~ paste(formatC(round(val, 0), format = 'd', big.mark = ','), 'ha'),
-      var == 'areaper' ~ paste0(round(val, 1), '%')
-    )
-  ) %>%
-  deframe %>%
-  as.list
-restorable <- opparea %>%
-  filter(grepl('Restorable', cat)) %>%
-  group_by(var) %>%
-  summarise(
-    val = sum(val),
-    .groups = 'drop'
-  ) %>%
-  mutate(
-    val = case_when(
-      var == 'areaha' ~ paste(formatC(round(val, 0), format = 'd', big.mark = ','), 'ha'),
-      var == 'areaper' ~ paste0(round(val, 1), '%')
-    )
-  ) %>%
-  deframe %>%
-  as.list
-reservation <- opparea %>%
-  filter(grepl('Reservation', cat)) %>%
-  group_by(var) %>%
-  summarise(
-    val = sum(val),
-    .groups = 'drop'
-  ) %>%
-  mutate(
-    val = case_when(
-      var == 'areaha' ~ paste(formatC(round(val, 0), format = 'd', big.mark = ','), 'ha'),
-      var == 'areaper' ~ paste0(round(val, 1), '%')
-    )
-  ) %>%
-  deframe %>%
-  as.list
+native <- areasumfun(opparea, 'Native')
+restorable <- areasumfun(opparea, 'Restorable')
+existing <- areasumfun(opparea, 'Existing')
+proposed <- areasumfun(opparea, 'Proposed')
+reservation <- areasumfun(opparea, 'Reservation')
 
 potential <- restdat %>%
   mutate(
@@ -307,6 +289,8 @@ potential <- restdat %>%
 areas <- list(
   native = native,
   restorable = restorable,
+  existing = existing,
+  proposed = proposed,
   reservation = reservation,
   potential = potential
 )
