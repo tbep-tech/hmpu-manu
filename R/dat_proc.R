@@ -183,3 +183,19 @@ subtchgdatmanu <- bind_rows(op1, op2, op3) %>%
   data.frame(stringsAsFactors = F)
 
 save(subtchgdatmanu, file = here('data', 'subtchgdatmanu.RData'), version = 2)
+
+# opportunity data for opportunity map --------------------------------------------------------
+
+# data copied from commit e6026f831e90cffca8ea906c8fe53c85ceb5746a in hmpu-workflow
+# these are the original HMPU layers in the report
+data("nativersrv")
+data("restorersrv")
+data("nativelyr")
+data("restorelyr")
+data("coastal")
+
+oppdat <- oppdat_fun(nativersrv, restorersrv, nativelyr, restorelyr, coastal)
+
+save(oppdat, file = here('data/oppdat.RData'))
+
+

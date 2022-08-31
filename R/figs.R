@@ -164,16 +164,8 @@ saveNetwork(a2, here("figs/subtchgdatalluv.html"))
 
 # opportunity map -----------------------------------------------------------------------------
 
-# data copied from commit e6026f831e90cffca8ea906c8fe53c85ceb5746a in hmpu-workflow
-# these are the original HMPU layers in the report
-data("nativersrv")
-data("restorersrv")
-data("nativelyr")
-data("restorelyr")
-data("coastal")
 data("tbshed")
-
-oppdat <- oppdat_fun(nativersrv, restorersrv, nativelyr, restorelyr, coastal)
+load(file = here('data/oppdat.RData'))
 
 p <- oppmap_fun(oppdat, tbshed, northloc = 'tr', scaleloc = 'tl',
                 buffdist = 0.04)
