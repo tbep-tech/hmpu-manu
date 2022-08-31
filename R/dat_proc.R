@@ -198,4 +198,118 @@ oppdat <- oppdat_fun(nativersrv, restorersrv, nativelyr, restorelyr, coastal)
 
 save(oppdat, file = here('data/oppdat.RData'))
 
+# restoration data for restoration potential map ----------------------------------------------
+
+# data copied from commit e6026f831e90cffca8ea906c8fe53c85ceb5746a in hmpu-workflow
+# these are the original HMPU layers in the report
+data("restorelyr")
+
+restdat <- restdat_fun(restorelyr)
+
+save(restdat, file = here('data/restdat.RData'))
+
+
+# summary of areas in opportunity and restoration potential -----------------------------------
+
+load(file = here('data/oppdat.RData'))
+load(file = here('data/restdat.RData'))
+
+opparea <- oppdat %>%
+  mutate(
+    areaha = st_area(.),
+    areaha = set_units(areaha, 'hectare')
+  ) %>%
+  st_set_geometry(NULL) %>%
+  group_by(cat) %>%
+  summarise(
+    areaha = sum(areaha),
+    areaper = 100 * (areaha / 587200)
+  ) %>%
+  pivot_longer(cols = c('areaha', 'areaper'), names_to = 'var', values_to = 'val')
+
+native <- opparea %>%
+  filter(grepl('Native', cat)) %>%
+  group_by(var) %>%
+  summarise(
+    val = sum(val),
+    .groups = 'drop'
+  ) %>%
+  mutate(
+    val = case_when(
+      var == 'areaha' ~ paste(formatC(round(val, 0), format = 'd', big.mark = ','), 'ha'),
+      var == 'areaper' ~ paste0(round(val, 1), '%')
+    )
+  ) %>%
+  deframe %>%
+  as.list
+restorable <- opparea %>%
+  filter(grepl('Restorable', cat)) %>%
+  group_by(var) %>%
+  summarise(
+    val = sum(val),
+    .groups = 'drop'
+  ) %>%
+  mutate(
+    val = case_when(
+      var == 'areaha' ~ paste(formatC(round(val, 0), format = 'd', big.mark = ','), 'ha'),
+      var == 'areaper' ~ paste0(round(val, 1), '%')
+    )
+  ) %>%
+  deframe %>%
+  as.list
+reservation <- opparea %>%
+  filter(grepl('Reservation', cat)) %>%
+  group_by(var) %>%
+  summarise(
+    val = sum(val),
+    .groups = 'drop'
+  ) %>%
+  mutate(
+    val = case_when(
+      var == 'areaha' ~ paste(formatC(round(val, 0), format = 'd', big.mark = ','), 'ha'),
+      var == 'areaper' ~ paste0(round(val, 1), '%')
+    )
+  ) %>%
+  deframe %>%
+  as.list
+
+potential <- restdat %>%
+  mutate(
+    areaha = st_area(.),
+    areaha = set_units(areaha, 'hectare')
+  ) %>%
+  st_set_geometry(NULL) %>%
+  group_by(HMPU_TARGETS) %>%
+  summarise(
+    areaha = sum(areaha),
+    areaper = 100 * (areaha / 587200)
+  ) %>%
+  pivot_longer(cols = c('areaha', 'areaper'), names_to = 'var', values_to = 'val') %>%
+  group_by(HMPU_TARGETS) %>%
+  nest() %>%
+  mutate(
+    data = purrr::map(data, function(x){
+
+      x %>%
+        mutate(
+          val = case_when(
+            var == 'areaha' ~ paste(formatC(round(val, 0), format = 'd', big.mark = ','), 'ha'),
+            var == 'areaper' ~ paste0(round(val, 1), '%')
+          ),
+          val = ifelse(val == '0%', '< 1%', val)
+        ) %>%
+        deframe %>%
+        as.list
+    })
+  ) %>%
+  deframe()
+
+areas <- list(
+  native = native,
+  restorable = restorable,
+  reservation = reservation,
+  potential = potential
+)
+
+save(areas, file = here('data/areas.RData'))
 

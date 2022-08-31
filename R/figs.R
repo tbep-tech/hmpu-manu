@@ -176,9 +176,7 @@ dev.off()
 
 # restoration potential map -------------------------------------------------------------------
 
-data("restorelyr")
-
-restdat <- restdat_fun(restorelyr)
+load(file = here('data/restdat.RData'))
 
 p <- restmap_fun(restdat, tbshed, northloc = 'tr', scaleloc = 'tl',
                  buffdist = 0.04)
