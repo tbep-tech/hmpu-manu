@@ -399,11 +399,6 @@ curexcmp_fun <- function(cursum, nativesum, restoresum){
         !is.na(val) ~ paste(prettyNum(round(val, 0), big.mark = ','), unis),
         T ~ 'N/A'
       ),
-      val = case_when(
-        (HMPU_TARGETS %in% 'Salt Marshes') & (var %in% c('total restorable', 'restorable Existing',
-                                                         'restorable Proposed')) ~ paste(val, '(JU)'),
-        T ~ val
-      ),
       Category = factor(Category, levels = c('Subtidal', 'Intertidal', 'Supratidal')),
       HMPU_TARGETS = factor(HMPU_TARGETS, levels = levels(strata$HMPU_TARGETS))
     ) %>%
@@ -412,13 +407,11 @@ curexcmp_fun <- function(cursum, nativesum, restoresum){
     mutate(
       `native Existing` = case_when(
         Category == 'Subtidal' ~ `Current Extent`,
-        HMPU_TARGETS == c('Living Shorelines') ~ 'LSSM',
         T ~ `native Existing`
       ),
       `total restorable` = case_when(
         HMPU_TARGETS == 'Seagrasses' ~ '5,719 ha',
         HMPU_TARGETS %in% c('Tidal Flats', 'Oyster Bars') ~ 'I/D',
-        HMPU_TARGETS %in% c('Living Shorelines', 'Tidal Tributaries') ~ 'LSSM',
         T ~ `total restorable`
       ),
       `restorable Existing` = case_when(
@@ -462,9 +455,7 @@ curexcmp_fun <- function(cursum, nativesum, restoresum){
     merge_at(i = 15:16, j = 8, part = 'body') %>%
     add_header_row(colwidths = c(2, 3, 3), values = c('', 'Native Habitats', 'Restorable Habitats')) %>%
     add_footer_lines(values = "") %>%
-    footnote(i = 1, j = 1, sep = "", value = as_paragraph("N/A - Not Applicable; I/D - Insufficient Data; LSSM - Living Shoreline Suitability Model; JU - Potential"), part = 'body', inline = T, ref_symbols = "") %>%
-    footnote(i = 1, j = 2, sep = " ", value = as_paragraph(as_i("Juncus")), part = "body", inline = T, ref_symbols = "") %>%
-    footnote(i = 1, j = 3, sep = " ", value = as_paragraph("Marsh Opportunity"), inline = T, ref_symbols = "") %>%
+    footnote(i = 1, j = 1, sep = "", value = as_paragraph("N/A - Not Applicable; I/D - Insufficient Data"), part = 'body', inline = T, ref_symbols = "") %>%
     add_footer_lines(values = "*All lands identified for acquisition by partners, does not represent a 2030 target or 2050 goal") %>%
     add_footer_lines(values = "**Does not account for lands neither currently protected nor currently under consideration for acquisition") %>%
     fontsize(size = 8, part = 'footer') %>%
@@ -970,7 +961,6 @@ targetcmp_fun <- function(cursum, restoresum, trgsmetric){
       `total restorable` = case_when(
         HMPU_TARGETS == 'Seagrasses' ~ '5,719 ha',
         HMPU_TARGETS %in% c('Tidal Flats', 'Oyster Bars', 'Tidal Tributaries') ~ 'I/D',
-        HMPU_TARGETS %in% c('Living Shorelines') ~ 'LSSM',
         T ~ `total restorable`
       )
     ) %>%
@@ -1000,9 +990,7 @@ targetcmp_fun <- function(cursum, restoresum, trgsmetric){
     merge_at(i = 10:11, j = 4, part = 'body') %>%
     merge_at(i = 16:17, j = 4, part = 'body') %>%
     add_footer_lines(values = "") %>%
-    footnote(i = 1, j = 1, sep = "", value = as_paragraph("N/A - Not Applicable; I/D - Insufficient Data; LSSM - Living Shoreline Suitability Model; JU - Potential"), part = 'body', inline = T, ref_symbols = "") %>%
-    footnote(i = 1, j = 2, sep = " ", value = as_paragraph(as_i("Juncus")), part = "body", inline = T, ref_symbols = "") %>%
-    footnote(i = 1, j = 3, sep = " ", value = as_paragraph("Marsh Opportunity"), inline = T, ref_symbols = "") %>%
+    footnote(i = 1, j = 1, sep = "", value = as_paragraph("N/A - Not Applicable; I/D - Insufficient Data; LSSM - Living Shoreline Suitability Model"), part = 'body', inline = T, ref_symbols = "") %>%
     add_footer_lines(values = "*Does not account for lands neither currently protected nor currently under consideration for acquisition") %>%
     fontsize(size = 8, part = 'footer') %>%
     fontsize(i = c(2:6, 8:13, 15:18), j = 7, size = 8, part = 'body') %>%

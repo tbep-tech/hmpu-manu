@@ -278,7 +278,7 @@ potential <- restdat %>%
             var == 'areaha' ~ paste(formatC(round(val, 0), format = 'd', big.mark = ','), 'ha'),
             var == 'areaper' ~ paste0(round(val, 1), '%')
           ),
-          val = ifelse(val == '0%', '< 1%', val)
+          val = ifelse(val == '0%', '< 0.1%', val)
         ) %>%
         deframe %>%
         as.list
@@ -286,13 +286,35 @@ potential <- restdat %>%
   ) %>%
   deframe()
 
+potentialall <-  restdat %>%
+  mutate(
+    areaha = st_area(.),
+    areaha = set_units(areaha, 'hectare')
+  ) %>%
+  st_set_geometry(NULL) %>%
+  summarise(
+    areaha = sum(areaha),
+    areaper = 100 * (areaha / 587200)
+  ) %>%
+  pivot_longer(cols = c('areaha', 'areaper'), names_to = 'var', values_to = 'val') %>%
+  mutate(
+    val = case_when(
+      var == 'areaha' ~ paste(formatC(round(val, 0), format = 'd', big.mark = ','), 'ha'),
+      var == 'areaper' ~ paste0(round(val, 1), '%')
+    ),
+    val = ifelse(val == '0%', '< 0.1%', val)
+  ) %>%
+  deframe %>%
+  as.list
+
 areas <- list(
   native = native,
   restorable = restorable,
   existing = existing,
   proposed = proposed,
   reservation = reservation,
-  potential = potential
+  potential = potential,
+  potentialall = potentialall
 )
 
 save(areas, file = here('data/areas.RData'))
