@@ -439,10 +439,10 @@ curexcmp_fun <- function(cursum, nativesum, restoresum){
       Category = 'Stratum',
       HMPU_TARGETS = 'Habitat Type',
       `native Existing` = 'Existing Conservation Lands',
-      `native Proposed` = 'Proposed Conservation Lands*',
-      `total restorable` = 'Total Restoration Opportunity**',
+      `native Proposed` = 'Proposed Conservation Lands',
+      `total restorable` = 'Total Restoration Opportunity',
       `restorable Existing` = 'Existing Conservation Lands Restoration Opportunity',
-      `restorable Proposed` = 'Proposed Conservation Lands Restoration Opportunity*'
+      `restorable Proposed` = 'Proposed Conservation Lands Restoration Opportunity'
     ) %>%
     merge_at(i = 1, part = 'body') %>%
     merge_at(i = 7, part = 'body') %>%
@@ -454,11 +454,6 @@ curexcmp_fun <- function(cursum, nativesum, restoresum){
     merge_at(i = 15:16, j = 7, part = 'body') %>%
     merge_at(i = 15:16, j = 8, part = 'body') %>%
     add_header_row(colwidths = c(2, 3, 3), values = c('', 'Native Habitats', 'Restorable Habitats')) %>%
-    add_footer_lines(values = "") %>%
-    footnote(i = 1, j = 1, sep = "", value = as_paragraph("N/A - Not Applicable; I/D - Insufficient Data"), part = 'body', inline = T, ref_symbols = "") %>%
-    add_footer_lines(values = "*All lands identified for acquisition by partners, does not represent a 2030 target or 2050 goal") %>%
-    add_footer_lines(values = "**Does not account for lands neither currently protected nor currently under consideration for acquisition") %>%
-    fontsize(size = 8, part = 'footer') %>%
     align(align = "center", part = "header") %>%
     align(i = c(2:6, 8:12, 14:17), j = 3:8, align = "center", part = "body") %>%
     # bg(i = c(1, 7, 13), bg = 'chartreuse3', part = "body") %>%
@@ -979,7 +974,7 @@ targetcmp_fun <- function(cursum, restoresum, trgsmetric){
     set_header_labels(
       Category = 'Stratum',
       HMPU_TARGETS = 'Habitat Type',
-      `total restorable` = 'Total Restoration Opportunity*',
+      `total restorable` = 'Total Restoration Opportunity',
       `Target2030` = '2030 Target',
       `Target2050` = '2050 Goal',
       rationale = 'Target Narrative and Restoration and Protection Rationale'
@@ -989,10 +984,6 @@ targetcmp_fun <- function(cursum, restoresum, trgsmetric){
     merge_at(i = 14, part = 'body') %>%
     merge_at(i = 10:11, j = 4, part = 'body') %>%
     merge_at(i = 16:17, j = 4, part = 'body') %>%
-    add_footer_lines(values = "") %>%
-    footnote(i = 1, j = 1, sep = "", value = as_paragraph("N/A - Not Applicable; I/D - Insufficient Data; LSSM - Living Shoreline Suitability Model"), part = 'body', inline = T, ref_symbols = "") %>%
-    add_footer_lines(values = "*Does not account for lands neither currently protected nor currently under consideration for acquisition") %>%
-    fontsize(size = 8, part = 'footer') %>%
     fontsize(i = c(2:6, 8:13, 15:18), j = 7, size = 8, part = 'body') %>%
     bold(i = 9) %>%
     width(j = 7, width = 4.5) %>%
