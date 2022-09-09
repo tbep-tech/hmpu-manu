@@ -45,8 +45,8 @@ thm <- function(x){
 
 # table
 subttab <- flextable::flextable(totab, col_keys = grep('^chgcol$', names(totab), value = T, invert = T)) %>%
-  flextable::bg(i = ~ `chgcol` == 0, j = '% change', bg = losscol) %>%
-  flextable::bg(i = ~ `chgcol` == 1, j = '% change', bg = gaincol) %>%
+  # flextable::bg(i = ~ `chgcol` == 0, j = '% change', bg = losscol) %>%
+  # flextable::bg(i = ~ `chgcol` == 1, j = '% change', bg = gaincol) %>%
   thm
 
 # subttab
@@ -75,6 +75,7 @@ totab <- acres %>%
     Hectares = Hectares / 2.471
   ) %>%
   tidyr::pivot_wider(names_from = yr, values_from = Hectares) %>%
+  filter(`Habitat Type` != 'Open Water') %>%
   mutate(
     `1990 to 2017` = `2017` - `1990`,
     `% change` = 100 * (`2017` - `1990`) / `1990`,
@@ -101,8 +102,8 @@ thm <- function(x){
 
 # table
 acretab <- flextable::flextable(totab, col_keys = grep('^chgcol$', names(totab), value = T, invert = T)) %>%
-  flextable::bg(i = ~ `chgcol` == 0, j = '% change', bg = losscol) %>%
-  flextable::bg(i = ~ `chgcol` == 1, j = '% change', bg = gaincol) %>%
+  # flextable::bg(i = ~ `chgcol` == 0, j = '% change', bg = losscol) %>%
+  # flextable::bg(i = ~ `chgcol` == 1, j = '% change', bg = gaincol) %>%
   thm
 
 # acretab
