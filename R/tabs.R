@@ -6,6 +6,32 @@ library(units)
 
 source(here('R/funcs.R'))
 
+# opportunity area description ----------------------------------------------------------------
+
+totab <- tibble(
+  `Opportunity area` = c('Existing Conservation Native', 'Existing Conservation Restorable', 'Proposed Conservation Native', 'Proposed Conservation Restorable', 'Coastal Reservation Native', 'Coastal Reservation Restorable'),
+  `Description`= c(
+    'Native habitats currently within existing conservation lands',
+    'Restorable areas currently within existing conservation lanbs',
+    'Native habits within proposed conservation lands',
+    'Restorable areas within proposed conservations lands',
+    'Native habitats within the coastal stratum',
+    'Restorable areas within the coastal stratum')
+)
+
+thm <- function(x){
+  flextable::width(x, width = 1.75, j = 1) %>%
+    flextable::width(width = 4.75, j = 2) %>%
+    # flextable::width(width = 2.75, j = 7) %>%
+    fontsize(size = 8, part = 'all') %>%
+    flextable::padding(padding = 0, part = 'all')
+}
+
+opptab <- flextable(totab) %>%
+  thm
+
+save(opptab, file = here('tabs/opptab.RData'))
+
 # subtidal habitat change ---------------------------------------------------------------------
 
 data(subtacres)

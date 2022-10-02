@@ -167,6 +167,15 @@ saveNetwork(a2, here("figs/subtchgdatalluv.html"))
 data("tbshed")
 load(file = here('data/oppdat.RData'))
 
+oppdat <- oppdat %>%
+  mutate(
+    cat = case_when(
+      cat == 'Reservation Native' ~ 'Coastal Reservation Native',
+      cat == 'Reservation Restorable' ~ 'Coastal Reservation Restorable',
+      T ~ cat
+    )
+  )
+
 p <- oppmap_fun(oppdat, tbshed, northloc = 'tr', scaleloc = 'tl',
                 buffdist = 0.04)
 

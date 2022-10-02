@@ -172,7 +172,8 @@ fixgeo <- function(dat){
 # nativelyr is current existing/proposed native sf object
 # restorelyr is current existing/proposed restoration layer
 # crplyr is optional cropping layer
-curex_fun <- function(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, strata, nativelyr, restorelyr, crplyr = NULL){
+# notab will return the summarized data not as a flextable object
+curex_fun <- function(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, strata, nativelyr, restorelyr, crplyr = NULL, notab = F){
 
   # crop all sf objects by optional crop layer
   if(!is.null(crplyr)){
@@ -334,7 +335,7 @@ curex_fun <- function(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, strat
 
   # final table
 
-  tab <- curexcmp_fun(cursum, nativesum, restoresum)
+  tab <- curexcmp_fun(cursum, nativesum, restoresum, notab = notab)
 
   return(tab)
 
@@ -385,7 +386,7 @@ curexleg_fun <- function(){
 }
 
 # final table compilation function for curex_fun, curexleg_fun
-curexcmp_fun <- function(cursum, nativesum, restoresum){
+curexcmp_fun <- function(cursum, nativesum, restoresum, notab = F){
 
   # combine all for table
 
@@ -430,6 +431,9 @@ curexcmp_fun <- function(cursum, nativesum, restoresum){
       `restorable Existing`,
       `restorable Proposed`
     )
+
+  if(notab)
+    return(allsum)
 
   # make table
 
@@ -565,8 +569,8 @@ oppmap_fun <- function(oppmap, bndry, northloc = 'tr', scaleloc = 'tl', buffdist
     `Existing Conservation Restorable` = 'green4',
     `Proposed Conservation Native` = 'dodgerblue1',
     `Proposed Conservation Restorable` = 'dodgerblue4',
-    `Reservation Native` = 'violetred1',
-    `Reservation Restorable` = 'violetred3'
+    `Coastal Reservation Native` = 'violetred1',
+    `Coastal Reservation Restorable` = 'violetred3'
     ) %>%
     unlist
 

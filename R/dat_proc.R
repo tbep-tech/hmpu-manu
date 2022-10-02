@@ -250,24 +250,57 @@ save(restdat, file = here('data/restdat.RData'))
 
 # summary of areas in opportunity and restoration potential -----------------------------------
 
+fluccs <- read.csv(here('data', 'FLUCCShabsclass.csv'), stringsAsFactors = F)
+
+lulcfl <- 'lulc2017'
+subtfl <- 'sgdat2018'
+
+# from 01_inputs
+load(here('data', paste0(lulcfl, '.RData')))
+load(here('data', paste0(subtfl, '.RData')))
+lulc <- get(lulcfl)
+subt <- get(subtfl)
+load(file = here('data/hard.RData'))
+load(file = here('data/arti.RData'))
+load(file = here('data/tidt.RData'))
+load(file = here('data/livs.RData'))
+load(file = here('data/coastal.RData'))
+load(file = here('data/strata.RData'))
 load(file = here('data/oppdat.RData'))
 load(file = here('data/restdat.RData'))
 
-# summarizes area and formats for manu by type in oppareas
-areasumfun <- function(x, flt){
+# data copied from commit e6026f831e90cffca8ea906c8fe53c85ceb5746a in hmpu-workflow
+# these are the original HMPU layers in the report
+load(file = here('data/restorelyr.RData'))
+load(file = here('data/nativelyr.RData'))
 
-  out <- x %>%
-    filter(grepl(flt, cat)) %>%
-    group_by(var) %>%
-    summarise(
-      val = sum(val),
-      .groups = 'drop'
+# get info from table 3, then tabulate for native, restorable, existing, and proposed
+notab <- curex_fun(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, strata, nativelyr, restorelyr, notab = T)
+
+notabfrm <- notab %>%
+  mutate_if(
+    is.character, function(x) gsub('\\D', '', x) %>%  as.numeric
+  ) %>%
+  filter(Category != 'Subtidal')
+
+# filter by type, calc total, and format
+sumfun <- function(notabfrm, flt){
+
+  out <- notabfrm %>%
+    select(matches(flt)) %>%
+    apply(2, function(x) ifelse(duplicated(x), NA, x)) %>%
+    sum(na.rm = TRUE) %>%
+    tibble(areaha = .) %>%
+    mutate(
+      areaper = 100 * (areaha / 587200)
     ) %>%
+    pivot_longer(cols = c('areaha', 'areaper'), names_to = 'var', values_to = 'val') %>%
     mutate(
       val = case_when(
         var == 'areaha' ~ paste(formatC(round(val, 0), format = 'd', big.mark = ','), 'ha'),
         var == 'areaper' ~ paste0(round(val, 1), '%')
-      )
+      ),
+      val = ifelse(val == '0%', '< 0.1%', val)
     ) %>%
     deframe %>%
     as.list
@@ -276,7 +309,13 @@ areasumfun <- function(x, flt){
 
 }
 
-opparea <- oppdat %>%
+native <- sumfun(notabfrm, 'native')
+restorable <- sumfun(notabfrm, 'restorable Existing|restorable Proposed')
+existing <- sumfun(notabfrm, 'Existing')
+proposed <- sumfun(notabfrm, 'Proposed')
+
+reservation <- oppdat %>%
+  filter(grepl('Reservation', cat)) %>%
   mutate(
     areaha = st_area(.),
     areaha = set_units(areaha, 'hectare')
@@ -287,13 +326,20 @@ opparea <- oppdat %>%
     areaha = sum(areaha),
     areaper = 100 * (areaha / 587200)
   ) %>%
-  pivot_longer(cols = c('areaha', 'areaper'), names_to = 'var', values_to = 'val')
-
-native <- areasumfun(opparea, 'Native')
-restorable <- areasumfun(opparea, 'Restorable')
-existing <- areasumfun(opparea, 'Existing')
-proposed <- areasumfun(opparea, 'Proposed')
-reservation <- areasumfun(opparea, 'Reservation')
+  pivot_longer(cols = c('areaha', 'areaper'), names_to = 'var', values_to = 'val') %>%
+  group_by(var) %>%
+  summarise(
+    val = sum(val),
+    .groups = 'drop'
+  ) %>%
+  mutate(
+    val = case_when(
+      var == 'areaha' ~ paste(formatC(round(val, 0), format = 'd', big.mark = ','), 'ha'),
+      var == 'areaper' ~ paste0(round(val, 1), '%')
+    )
+  ) %>%
+  deframe %>%
+  as.list
 
 potential <- restdat %>%
   mutate(
