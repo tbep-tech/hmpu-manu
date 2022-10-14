@@ -139,7 +139,7 @@ plulc <- ggmap(bsmap1_transparent) +
 p <- plulc +
   inset(ggplotGrob(pinset), xmin = -81.85, xmax = -81.35, ymin = 27.4, ymax = 27.7)
 
-png(here('figs/lulcmap.png'), height = 5, width = 7, res = 300, units = 'in')
+jpeg(here('figs/lulcmap.jpg'), height = 5, width = 7, res = 300, units = 'in')
 p
 dev.off()
 
@@ -160,6 +160,8 @@ saveNetwork(a1, here("figs/chgdatalluv.html"))
 saveNetwork(a2, here("figs/subtchgdatalluv.html"))
 
 # go to chrome and use svgcrowbar to svg, then inkscape svg to png
+# can export svg to jpg in inkscape, but must set alpha of background to 100
+# this is under Document properties -> Background -> Background color
 # webshot screws up the labels
 
 # opportunity map -----------------------------------------------------------------------------
@@ -179,7 +181,7 @@ oppdat <- oppdat %>%
 p <- oppmap_fun(oppdat, tbshed, northloc = 'tr', scaleloc = 'tl',
                 buffdist = 0.04)
 
-png(here('figs/oppmap.png'), height = 5, width = 8, res = 300, units = 'in')
+jpeg(here('figs/oppmap.jpg'), height = 5, width = 8, res = 300, units = 'in')
 p
 dev.off()
 
@@ -190,6 +192,6 @@ load(file = here('data/restdat.RData'))
 p <- restmap_fun(restdat, tbshed, northloc = 'tr', scaleloc = 'tl',
                  buffdist = 0.04)
 
-png(here('figs/restmap.png'), height = 5, width = 8, res = 300, units = 'in')
+jpeg(here('figs/restmap.jpg'), height = 5, width = 8, res = 300, units = 'in')
 p
 dev.off()
