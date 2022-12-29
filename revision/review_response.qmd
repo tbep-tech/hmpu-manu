@@ -15,25 +15,49 @@ All page and line numbers in the reviewer comments refer to the original submiss
 
 The authors suggest an interesting planning tool for coastal restoration. However, in the case given by the author, the basis for judging whether wetlands can be restored is very subjective, and there is no actual data to support whether such judgment is real and feasible, which is the biggest problem of the paper.
 
-* __Response__: 
+* __Response__: Thank you for your comments on the draft manuscript.  We have made every effort to provide responses to your concerns and have revised the text as needed, particularly for use of our approach to identify actual restoration potential (see response to your comments on lines 304-316). We are confident these changes have addressed your concerns and strengthened the content therein.  
 
 Line 76. How to determine the benchmark period, or what is the benchmark period in the study area, decades ago?
 
+* __Response__: Apologies for the omission of that critical detail.  The benchmark period is defined as circa 1950 when the earliest historical aerial photographs of Tampa Bay and its watershed were available.  This time period is defined as pre-development in @Robison10 and the citations that precede the sentence.  The text was amended as follows: "Priority was given to restoration activities focused on habitat types that were important for a suite of estuarine faunal guilds disproportionately lost or degraded compared to a circa 1950 benchmark period considered as pre-development."
+
 Line 127-128. 5-foot contour is the absolute elevation or elevation relative to sea level?
+
+* __Response__: The explicit definition of the 5-foot contour was previously provided on lines 209-213 as the area of land from the local Mean Lower Low Water elevation extending landward to the elevation 5 feet above Mean Sea Level. The definition was moved to this section for clarity.    
 
 Line 140. What are the specific contents of short-term and long-term goals? The reader may want a comparison table of the two goals
 
+* __Response__: The identified short-term targets and long-term goals are provided in Table 5 and they are not presented at this point in the text because the methods that follow describe the process by which they were identified.  However, we have added some text to provide some clarify on on these terms: "The short-term targets provided an interim set of native habitat coverages to attain within a reasonable planning horizon, at which point progress towards attaining the long-term goals will be re-assessed."
+
 Line 206-215. The actual available space for restoration efforts depends on the relative relation between wetland elevation and tide height. Whether the slope or elevation of coastal wetlands is used to estimate the potential restoration area under the impact of sea level rise. The author should give specific elevation data and tidal data.
+
+* __Response__: We assume that this comment relates to your general concern that our approach does not provide an explicit quantification of the restoration potential of wetlands, either tidal or uplands.  We certainly agree that identification of wetland restoration areas requires a more detailed assessment of land characteristics, including but not limited to elevation and slope data.  The approach described herein is primarily a screening and prioritization tool that requires additional work for on-site restoration planning. We hope that the addition to the text for your comments on lines 304-316 below addresses this concern.
 
 Line 216-220 and Figue2. In addition to the land use/land cover data, I think it is important to consider the digital elevation data as well as the relative sea level rise data.
 
+* __Response__: Please see the response to the previous comment and below regarding comments to lines 304-316. 
+
 Line 236. What is the classification standard of xeric, mesic, or hydric soil? Due to sea level rise, wetland soil salinity changes, resulting in the transformation of the spatial pattern of freshwater wetland to saltwater wetland, how to consider this.
+
+* __Response__: As noted in the manuscript, these classifications are defined in @Ries14, but historically are defined in @Baldwin38.  The latter citation was added. Additionally, we certainly agree that soil types may change over time as affected by sea level rise.  However, our 5-foot contour considers the likely rate of sea level rise [sensu @Burke19] within the 2030 and 2050 time period used to establish the targets and goals.  That is, the coastal stratum provides a distinction for the restoration potential of wetlands (mesic/hydric soils) as inter-tidal within the five foot contour (e.g., mangroves, salt barrens, salt marshes) and supra-tidal above the five foot contour (forested and non-forested wetlands) within the expected time period of sea level rise.  We have added some text to make this clear: "This distinction explicitly accounts for potential salinity changes to soil properties as a function of sea-level rise based on regional projections in the time period for establishing the targets and goals."
 
 Line 248-249. The author needs to specify which data analysis methods were used?
 
+* __Response__: The analysis methods are the set of spatial operations described in the preceding text in the same section and as outlined in Figure 2.  The sentence was revised to make this more clear.  We have also noted two geospatial functions that were used, as examples, in the text that followed. Readers can view the linked repository for specific details as needed.  
+
 Line 304-316. The determination of potential repair area lacks quantitative basis. The priority of potential restoration areas at different locations depends on substrate conditions, ecological importance, engineering implementation, and restoration costs. For the whole region, the restoration potential of various ecosystems should be ranked, and only when they exceed a certain threshold can they be judged as having the operability and real potential of restoration under realistic conditions. Current opportunity maps simply overlap land use type data and soil data. I think such judgment is too subjective and arbitrary, lack of quantitative basis. Since the author mentions that there are data on restoration projects, why not use the projects already carried out to determine whether these potential restoration areas can actually be repaired in the future?
 
+* __Response__: We certainly appreciate the concerns that our approach does not provide a quantitative means of identifying actual restoration potential.  Additional information, as noted by the reviewer, is certainly needed for understanding the true restoration potential of any location withing the watershed.  However, we have noted in several locations in the manuscript that the approach described herein is a prioritization tool that can be used as a first step for restoration planning (lines 83, 90, 113).  Prior to this assessment, comparable tools at the scale of the watershed were not available and we believe that our approach is valuable in identifying potential restoration areas that regional managers could leverage for planning purposes.  In fact, our use of the term restoration "potential" was meant to implicitly account for this tool as a preliminary means to guide follow-up work once potential sites are identified.  
+
+     That being said, it is worth further clarifying the intent of our approach as a prioritization tool that warrants additional work should restoration projects be pursued at the locations identified by our spatial analyses.  We have added text to two key locations to make this clear.  
+
+     First, the following was added to the introduction on line 96: "These opportunity areas provide a first assessment of where restoration could occur, where on the ground assessments could be pursued to further quantify restoration potential."  
+
+     Second, the following was added to the methods on line 197: "The identification of these areas on a broad spatial scale serves as a planning tool for restoration practitioners, where follow-up assessments are expected to more fully quantify restoration potential at selected sites."
+"
 Figure 1. The classification criteria for land use types are confused. I suggest using the Ramsar Convention classification system.
+
+* __Response__: The classification criteria used in the figure was based on the FLUCCS approach described in the text (lines 157), with some categories combined for clarity in the figure. For example, "urban/open lands" includes 13 FLUCCS categories considered relevant for combining and displaying together in the map as a single category to show the extent of development in the Tampa Bay watershed.  The figure caption was revised to describe this approach. An additional citation to @Kawula18 was added in the text and figure caption. This classification was chosen as this is the standard approach used for the entire state of Florida.  
 
 ## Reviewer 3
 
@@ -96,3 +120,5 @@ Table5: This table is arguably the most important result from the paper. The onl
 It is also not immediately clear from the table how the values for the 2030 targets and 2050 goals are calculated. For example, for coastal uplands if 513 ha is the total restoration opportunity, then how was 1689 ha estimated for the 2050 target (if the current extent is 1446 ha)?
 
 If the values for the envisioned targets and goals for 2030 and 2050 are derived from the total restoration opportunity (which was estimated from the spatial data), then would it be possible to generate maps for where these locations are? Similar to Figure 5 / Figure 6?
+
+## References 
