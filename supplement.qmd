@@ -1,0 +1,110 @@
+---
+format: 
+  docx:
+    reference-doc: my_styles.docx
+    number-sections: true
+title: "Supplement: Addressing climate change and development pressures in an urban estuary through habitat restoration planning"
+shorttitle: "Tampa Bay watershed habitat restoration planning"
+bibliography: refs.bib
+csl: frontiers-in-ecology-and-evolution.csl
+author: 
+  - Marcus W Beck:
+      email: mbeck@tbep.org
+      institute: [TBEP]
+      correspondence: true
+  - Douglas E Robison:
+      email: DRobison@esassoc.com 
+      institute: [ESA]
+      correspondence: false
+  - Gary E Raulerson:
+      email: gmangrove@gmail.com
+      correspondence: false
+  - Maya C Burke:
+      email: mburke@tbep.org
+      institute: [TBEP]
+      correspondence: false
+  - Justin Saarinen:
+      email: justinsaarinen@gmail.com 
+      institute: [ESA]
+      correspondence: false
+  - Christine Sciarrino:
+      email: CSciarrino@esassoc.com 
+      institute: [ESA]
+      correspondence: false
+  - Edward T Sherwood:
+      email: esherwood@tbep.org 
+      institute: [TBEP]
+      correspondence: false
+  - David A Tomasko:
+      email: dave@sarasotabay.org
+      institute: [SBEP]
+      correspondence: false
+institute:
+  - TBEP: Tampa Bay Estuary Program, St. Petersburg, Florida 33701 USA
+  - ESA: Environmental Science Associates, Tampa, Florida 33609 USA
+  - SBEP: Sarasota Bay Estuary Program, Sarasota, Florida 34236 USA
+
+filters: 
+  - templates/scholarly-metadata.lua
+  - templates/author-info-blocks.lua
+  
+execute: 
+  echo: false
+  warning: false
+  ft.keepnext: false
+  ft.align: left
+---
+
+```{r, results = 'hide'}
+library(knitr)
+library(here)
+library(flextable)
+library(ftExtra)
+library(dplyr)
+```
+
+```{r}
+#| tbl-cap: "Table S1: Data sources for habitat types grouped by subtidal, intertidal, and supratidal strata."
+
+data(strata)
+
+tab <- strata %>%
+  mutate(
+    Source = case_when(
+      HMPU_TARGETS == 'Hard Bottom' ~ '@SWFWMD18;@CSA19',
+      HMPU_TARGETS %in% c('Artificial Reefs', 'Living Shorelines') ~ '@Robison20',
+      HMPU_TARGETS %in% c('Seagrasses', 'Oyster Bars', 'Tidal Flats') ~ '@SWFWMD19',
+      HMPU_TARGETS %in% c('Mangrove Forests', 'Salt Barrens', 'Salt Marshes') ~ '@SWFWMD18', 
+      HMPU_TARGETS == 'Tidal Tributaries' ~ '@Wessel22',
+      HMPU_TARGETS %in% c('Coastal Uplands', 'Non-Forested Freshwater Wetlands', 
+                          'Forested Freshwater Wetlands', 'Native Uplands') ~ '@SWFWMD18'
+    ), 
+    HMPU_TARGETS = as.character(HMPU_TARGETS)
+  ) %>% 
+  na.omit() %>% 
+  arrange(Category, HMPU_TARGETS) %>% 
+  select(
+    Stratum = Category, 
+    `Habitat Type` = HMPU_TARGETS, 
+    Source
+  )
+
+thm <- function(x){
+  flextable::align(x, align = 'center', part = 'header') %>%
+    flextable::align(align = 'left', j = 1, part = 'all') %>%
+    flextable::align(align = 'left', j = 2, part = 'body') %>%
+    flextable::border_inner() %>%
+    flextable::width(width = 0.7, j = 1) %>%
+    flextable::width(width = 5.8 / (ncol_keys(.) - 1), j = 2:ncol_keys(.)) %>%
+    flextable::padding(padding = 0, part = 'all') %>%
+    flextable::fontsize(size = 8, part = 'all')
+}
+
+tab %>% 
+  as_grouped_data('Stratum') %>% 
+  flextable() %>%
+  colformat_md() %>%
+  thm
+```
+
+## References {.unnumbered}

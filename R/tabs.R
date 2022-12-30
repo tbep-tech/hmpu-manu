@@ -3,6 +3,7 @@ library(tidyverse)
 library(here)
 library(sf)
 library(units)
+library(ftExtra)
 
 source(here('R/funcs.R'))
 
@@ -88,31 +89,31 @@ gaincol <- 'green'
 # format for the table
 totab <- acres %>%
   rename(
-    `Habitat Type` = HMPU_TARGETS,
+    `Landcover Category` = HMPU_TARGETS,
     yr = name,
     Hectares = Acres
   ) %>%
   filter(yr <= 2017) %>%
   mutate(
     Stratum = case_when(
-      `Habitat Type` %in% c('Mangrove Forests', 'Salt Barrens', 'Salt Marshes') ~ 'Intertidal',
+      `Landcover Category` %in% c('Mangrove Forests', 'Salt Barrens', 'Salt Marshes') ~ 'Intertidal',
       T ~ 'Supratidal'
     ),
     Hectares = Hectares / 2.471
   ) %>%
   tidyr::pivot_wider(names_from = yr, values_from = Hectares) %>%
-  filter(`Habitat Type` != 'Open Water') %>%
+  filter(`Landcover Category` != 'Open Water') %>%
   mutate(
     `1990 to 2017` = `2017` - `1990`,
     `% change` = 100 * (`2017` - `1990`) / `1990`,
     chgcol = case_when(
-      `% change` < 0 & `Habitat Type` != 'Developed' ~ 0,
-      `% change` >= 0 & `Habitat Type` != 'Developed' ~ 1,
-      `% change` < 0 & `Habitat Type` == 'Developed' ~ 1,
-      `% change` >= 0 & `Habitat Type` == 'Developed' ~ 0,
+      `% change` < 0 & `Landcover Category` != 'Developed' ~ 0,
+      `% change` >= 0 & `Landcover Category` != 'Developed' ~ 1,
+      `% change` < 0 & `Landcover Category` == 'Developed' ~ 1,
+      `% change` >= 0 & `Landcover Category` == 'Developed' ~ 0,
     )
   ) %>%
-  arrange(Stratum, `Habitat Type`) %>%
+  arrange(Stratum, `Landcover Category`) %>%
   as_grouped_data(groups = 'Stratum')
 
 thm <- function(x){

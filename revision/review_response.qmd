@@ -71,45 +71,83 @@ This paper presents a detailed method for spatial restoration planning using ava
 
 Overall, the paper is well-written and the authors provide a clear justification of the method, including the strengths (open source workflow), and limitations (detailed inputs, potential lag between reported restoration actions and observed landcover change in GIS products). Detailed comments on each section are provided below. Line numbers refer to those on the PDF version available for review.
 
-* __Response__: 
+* __Response__: Thank you for your detailed comments on our manuscript.  We have made every effort to address your concerns noted below and are confident this has improved the draft. 
 
 Abstract:
 
 While the paper is focused on the method and spatial classification to identify areas for potential restoration, this is not represented in the Abstract. Instead, the Abstract indicates a focus on the target-setting approach and emphasizes how sea-level rise, climate change, and watershed development are incorporated into this approach. The Abstract should rather focus on the main results of the paper – which was the identification of the different areas and changes over time as measured by applying the method. That is not to say that the entire Abstract is unsuitable, rather that it needs to be amended to better reflect the contents of the paper, rather than a summary of the approach.
 
+* __Response__: 
+
 Introduction:
 
 The Introduction would benefit from a stronger rationale / context in the opening paragraph. This first paragraph intends to highlight the ecological importance of estuarine / coastal ecosystems by listing ecosystem services and then mentioning impacts from anthropogenic activities and climate change. The rationale is focused on the need for management to incorporate stressors using a socio-ecological systems approach (L41-43). While this rationale is valid, the sentences leading up to it are somewhat disjointed. The readability could be improved by considering the information in the first and second paragraph together and then restructuring to provide better context. For example, L39-43 “Habitat changes in response to climate change include landward migration of mangroves into salt marshes, upstream migration of salt marshes within tidal tributaries, and upland forest migration” is a very limited description, with no prior reference to the process of landward migration. A more descriptive narrative to the opening paragraphs of the Introduction will set the tone for the paper and further support the relevance and importance of the work.
+
+* __Response__: 
 
 Methods:
 
 L107: Should this read as “altered the natural habitats of”
 
+* __Response__: Corrected.
+
 L117-126: If possible, it would help to have this information on the habitat layers and respective source material presented in a table – even as supplementary information.
+
+* __Response__: Text was added to refer the reader to a new supplement Table S1. 
 
 L127: At first mention of the 5-foot contour please provide an estimate in metres for comparison. This will also make for a more straightforward understanding of the SLR projection, which is provided in cm (L132).
 
+* __Response__: This sentence was revised as follows "...location relative to the 5-foot contour (~1.5m elevation) that covers an area of land...".
+
 L130-132: The SLR trend and projections to 2100 are stated here, but it is not clear whether these have been incorporated into the 2030 / 2050 targets / goals for restoration. In the Introduction (L83-86), it is stated that the approach will consider future stressors, including SLR. A spatial representation of how habitat / land cover may change by 2030 / 2050 under SLR is however not part of the Results. Were the SLR projections incorporated spatially? And did this impact the potential restoration areas? For example, are transitions from mangrove to tidal flat / seagrass included in the targets / goals when considering SLR? Please provide some additional information on whether this was incorporated and how it was done. This is needed to justify the statement in L83-86.
+
+* __Response__: 
 
 L154-165: Please indicate the type and scale of the spatial datasets for the habitat. Are these raster datasets? What is the grid resolution? Are they obtained from Landsat, or other remotely-sensed products? Providing detail on the input datasets will greatly assist any effort to replicate this method in another region.
 
+* __Response__: Both the subtidal and inter/supratidal data layers are vector products produced by photo-interpretation.  Details were added as follows. 
+
+     For the subtidal layers, details were added starting on line 150: "These data include vector polygons coverages of the major subtidal habitat types in Tampa Bay, as interpreted from 1:24,000 scale natural color aerial photographs flown in winter 2018 under cloud free conditions.  Accuracy assessments of the photo-interpreted map product included field verification by random sample points, with a requirement of 90% accuracy for the seagrass categories.  The minimum mapping unit for seagrass polygons is reported as 0.25 acres."
+     
+     For the inter/supratidal layers, details were added on line 158: "Similar methods as the subtidal habitats described above are used for the intertidal and supratidal coverage maps, although at a slightly higher spatial resolution (1:12,000)."
+
 L170-175: Please provide more detail on how the habitat coverage change analysis was performed. Was this a simple calculation of total area change per habitat type derived from pixel count / polygon area? Or, were the maps for different years overlayed and a spatial algorithm applied to calculate differences? Please specify how the change from one habitat to another was estimated in order to generate the alluvial diagrams.
+
+* __Response__: Additional detail was provided as follows: "Specifically, the spatial datasets were unioned and the total areal change of the polygons for each habitat type was quantified by taking the difference between the two terminal years.  For example, the area that remained as native uplands between the 1990 and 2017 intertidal and suptratidal layers was quantified, whereas the area that changed from native uplands to another habitat category was also quantified.  This process was repeated for all native habitats, including developed and restorable lands (described below)."
 
 L177-188: While I understand the justification to differentiate between “restoration” and “enhancement” activities, I would suggest the authors re-consider the terminology and definitions they have provided. The term “restoration” is well-known, with the definition provided by the Society of Ecological Restoration becoming mainstreamed, particularly under the “Decade for Ecosystem Restoration”. The SER definition for restoration from the international principles and standards (https://www.ser.org/page/SERStandards): “the process of assisting the recovery of an ecosystem that has been degraded, damaged or destroyed. (Ecosystem restoration is sometimes used interchangeably with ecological restoration, but ecological restoration always addresses biodiversity conservation and ecological integrity, whereas some approaches to ecosystem restoration may focus solely on the delivery of ecosystem services.)” Therefore, it is advised that the authors do not provide their own definition for restoration to only refer to activities where earthwork is involved to reshape the land. Rather, it would be better to state what type of restoration activity has been conducted, instead of using the holistic / encompassing term “restoration” to only refer to a specific subset of activities. Given the definition provided by the authors, it needs to be clarified if all areas indicated as “potential restorable’ would therefore require earthwork in order to revert to natural habitat? Or in this case does “restorable” encompass the greater suite of possible activities?
 
+* __Response__: 
+
 L206-207 and Table1: Is there a difference in using the term “reservation” when referring to the coastal areas, vs. the term “conservation” being used for the upland areas? Looking at Table 4, there are coastal habitats in conservation areas. Is this to just designate specifically areas that are within the 5ft contour, regardless of protection status – this was my understanding from Table 1, but it would be beneficial to have it stated more clearly in the text.
 
+* __Response__: 
+
 L217-219: Again, please provide some detail on the spatial resolution of these datasets. Were there any issues / challenges with alignment with spatial datasets from other sources? How were these overcome?
+
+* __Response__: Details on these data were added as follows: "The FNAI data are Florida Managed Areas as vector-based polygons of public and some private lands identified as having natural resource value and that are being managed at least partially for conservation.  The source data for this layer are provided to FNAI directly from the managing agency in digital format or as paper source maps that are digitized using appropriate topographic quadrangles, ortho-imagery, and property appraiser parcel data at a minimum spatial resolution of 1:5,000."
+
+     A citation to @FNAI20 was also added.
+     
+     The common projection used for all analyses was also added to line 251: "All spatial data were transformed to the NAD83(2011) / Florida West (ftUS) projection prior to analysis."
 
 Results:
 
 L263-266: Could changes in seagrass also be attributed to improved ground-truthing and photointerpretation? Perhaps some additional information on the input datasets, such as how the areas were estimated, could provide some insight (as suggested to present in a table above in Methods section).
 
+* __Response__: The change in seagrasses in Tampa Bay over the last three decades is well-documented [e.g., @Greening14; @Sherwood17].  The documentation of this recovery has been made possible primarily from efforts of the Southwest Florida Water Management District in providing accurate and comparable coverage maps on an approximate biennial basis since the late 1980s (as described in the data sources).  Although some minor changes in the FLUCCS codes have occurred during this period, the methods for documenting seagrasses have been consistent. We are confident that these changes are not a product of changes in methodologies.  We hope that our addition to the text describing more detail on the data sources and methods has provided some clarity.   
+
 L285-295: This is valuable information, and impressive that the authors were able to collate and document the restoration projects that have been carried out across different agencies and partnerships. This information will be very important for monitoring and reporting on progress for targets going forward, so it is a critical step to have synthesized the work that has already been carried out. An additional useful output would be a spatial representation of these projects so that the map could be updated as more projects are completed in the future (but this would be beyond the scope of this paper).
+
+* __Response__: 
 
 L309-310: Should this read “(coastal reservation restorable)”?
 
+* __Response__: Corrected.
+
 L324-335: In this section describing the targets and goals, I anticipated more detail on the potential climate change effects on the habitat map. As mentioned above in a previous comment, if this has been included then please provide a clearer description of the approach. But for example, the distribution of the intertidal habitats could be different by 2050 under SLR, and therefore adjacent upland area may be lost / transitioned into intertidal habitat. The authors have mentioned landward migration and the possibility of coastal squeeze due to infrastructure in the Discussion, but I expected it to be more clearly incorporated into the Results, given the framing of the paper in the Abstract and Introduction. If this is not the case then those previous sections need to be revisited.
+
+* __Response__: 
 
 Discussion:
 
@@ -119,12 +157,22 @@ Tables:
 
 Table3: Suggest that the heading in the second column be changed to “Landcover Category” or something similar, instead of “Habitat Type” as this column includes “Developed” and “Restorable”, which would not typically be considered as habitats.
 
+* __Response__: The column header was changed to "Landcover Category".  The table caption was also changed.
+
 Table4: There are some discrepancies in the table, or perhaps a sentence is needed in the title to explain why the current extent is not equal to existing conservation + proposed conservation lands. For example, Mangroves current extent = 6276, existing conservation + proposed conservation = (4516+1604) = 6120. Does this indicate an additional 156 ha of mangrove that is not within a conservation area? Also, check the rounding up of the area estimates as there is a discrepancy in values presented for total restoration opportunity = existing conservation lands restoration opportunity + proposed conservation lands restoration opportunity.
+
+* __Response__: 
 
 Table5: This table is arguably the most important result from the paper. The only query I have is whether the authors have considered how the map would look if these targets / goals were to be achieved. For example, the target for total intertidal to increase by 61 hectares in a mosaic – how does this factor in SLR?
 
+* __Response__: 
+
 It is also not immediately clear from the table how the values for the 2030 targets and 2050 goals are calculated. For example, for coastal uplands if 513 ha is the total restoration opportunity, then how was 1689 ha estimated for the 2050 target (if the current extent is 1446 ha)?
 
+* __Response__: 
+
 If the values for the envisioned targets and goals for 2030 and 2050 are derived from the total restoration opportunity (which was estimated from the spatial data), then would it be possible to generate maps for where these locations are? Similar to Figure 5 / Figure 6?
+
+* __Response__: 
 
 ## References 
