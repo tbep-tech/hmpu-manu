@@ -330,7 +330,7 @@ curex_fun <- function(lulc, subt, hard, arti, tidt, livs, coastal, fluccs, strat
     ) %>%
     spread(typ, Hectares, fill = 0) %>%
     mutate(
-      `total restorable` = `restorable Existing` + `restorable Proposed`
+      `total restorable` = round(`restorable Existing`, 0) + round(`restorable Proposed`, 0)
     )
 
   # final table
