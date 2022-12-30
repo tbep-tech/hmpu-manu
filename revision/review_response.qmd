@@ -77,15 +77,19 @@ Abstract:
 
 While the paper is focused on the method and spatial classification to identify areas for potential restoration, this is not represented in the Abstract. Instead, the Abstract indicates a focus on the target-setting approach and emphasizes how sea-level rise, climate change, and watershed development are incorporated into this approach. The Abstract should rather focus on the main results of the paper – which was the identification of the different areas and changes over time as measured by applying the method. That is not to say that the entire Abstract is unsuitable, rather that it needs to be amended to better reflect the contents of the paper, rather than a summary of the approach.
 
-* __Response__: 
+* __Response__: Thanks for this suggestion.  We have revised the abstracts to include more relevant content from the paper. The entire abstract from line 17 down was edited: 
+
+     "Although significant gains in subtidal habitats have been observed, expansion of mangroves into salt marshes and loss of native upland habitats to development highlights the need to target these locations for restoration. The long-term loss of potentially restorable lands to both coastal and upland development further underscores the diminishing restoration opportunities in the watershed. The established targets and goals identified habitats to maintain at their present level (e.g., mangroves) and those that require additional progress (e.g., oyster bars) based on past trends and an expected level of effort given the restoration history of the region. The new approach also accounts for the future effects of sea-level rise, climate change, and watershed development by prioritizing native coastal habitats relative to subtidal or upland areas. The restoration potential for coastal habitats was 624 ha (0.1% of the watershed) for tidal wetlands and 128 ha (< 0.1% of the watershed) for coastal uplands, whereas the total restoration opportunity in the watershed was 17,205 ha (2.9% of the watershed). Maps were created to identify the restoration opportunities where practitioners could focus efforts to achieve the defined targets and goals. Methods for repeatable analyses are also available using an open source workflow."
 
 Introduction:
 
 The Introduction would benefit from a stronger rationale / context in the opening paragraph. This first paragraph intends to highlight the ecological importance of estuarine / coastal ecosystems by listing ecosystem services and then mentioning impacts from anthropogenic activities and climate change. The rationale is focused on the need for management to incorporate stressors using a socio-ecological systems approach (L41-43). While this rationale is valid, the sentences leading up to it are somewhat disjointed. The readability could be improved by considering the information in the first and second paragraph together and then restructuring to provide better context. For example, L39-43 “Habitat changes in response to climate change include landward migration of mangroves into salt marshes, upstream migration of salt marshes within tidal tributaries, and upland forest migration” is a very limited description, with no prior reference to the process of landward migration. A more descriptive narrative to the opening paragraphs of the Introduction will set the tone for the paper and further support the relevance and importance of the work.
 
-* __Response__: 
+* __Response__: The first two paragraphs were combined and revised to make a more cohesive introduction to the paper:
 
-Methods:
+     "The health of estuarine systems and coastal habitats is tightly linked to land use and management of the watershed [@Yoskowitz15]. Coastal habitats provide multiple ecosystem services, including wildlife shelter and migratory corridors [@Yoskowitz15], fisheries production [@Houde93], water quality improvement [@Kushlan90; @Sprandel00; @AvilaGarcia20], erosion and flood attenuation [@Calil15; @Menendez18], carbon sequestration [@Dontis20] and recreation [@Chung18]. Anthropogenic stressors can negatively impact the services provided by coastal habitats and restoration practitioners must consider the anticipated effects of these stressors during planning [@Elliott07;@White17].  The combined effects of land development and climate change are especially problematic for prioritizing habitat restoration activities in coastal environments. Habitat changes in response to climate change include landward migration of mangroves into salt marshes, upstream migration of salt marshes within tidal tributaries, and upland forest migration [@Brinson95; @Vogelmann12; @Cavanaugh19]. Landward migration of critical habitats in response to sea-level rise may not be possible due to anthropogenic barriers in the watershed. Sea-level rise can occur quicker than landward migration of salt marshes and the upland slope may already be lost to urban development and hardening [@Titus09]. Given projected habitat losses and the limited resources available, appropriate and realistic sites for restoration need to be identified that account for future stressors and past trends."
+
+Methods: 
 
 L107: Should this read as “altered the natural habitats of”
 
@@ -93,7 +97,7 @@ L107: Should this read as “altered the natural habitats of”
 
 L117-126: If possible, it would help to have this information on the habitat layers and respective source material presented in a table – even as supplementary information.
 
-* __Response__: Text was added to refer the reader to a new supplement Table S1. 
+* __Response__: Text was added to refer the reader to a new Table S1 in supplement. 
 
 L127: At first mention of the 5-foot contour please provide an estimate in metres for comparison. This will also make for a more straightforward understanding of the SLR projection, which is provided in cm (L132).
 
@@ -101,7 +105,9 @@ L127: At first mention of the 5-foot contour please provide an estimate in metre
 
 L130-132: The SLR trend and projections to 2100 are stated here, but it is not clear whether these have been incorporated into the 2030 / 2050 targets / goals for restoration. In the Introduction (L83-86), it is stated that the approach will consider future stressors, including SLR. A spatial representation of how habitat / land cover may change by 2030 / 2050 under SLR is however not part of the Results. Were the SLR projections incorporated spatially? And did this impact the potential restoration areas? For example, are transitions from mangrove to tidal flat / seagrass included in the targets / goals when considering SLR? Please provide some additional information on whether this was incorporated and how it was done. This is needed to justify the statement in L83-86.
 
-* __Response__: 
+* __Response__: The expected effects of sea level rise are implicitly accounted for in the 5-foot contour or coastal stratum that was used to differentiate the opportunity areas in the coastal margin from those in the upland.  By placing emphasis on these areas, it is anticipated that restoration practitioners can target these locations differently based on the diminishing opportunities in these areas.  For example, figures 5 and 6 identify these areas differently from the other coastal strata.  The following text was added to line 132 to make this clear: 
+
+     "The coastal stratum within the 5-foot contour is used to better identify and prioritize coastal habitats at risk of landward migration and coastal development given that it includes the area of land within the sea level rise projections."
 
 L154-165: Please indicate the type and scale of the spatial datasets for the habitat. Are these raster datasets? What is the grid resolution? Are they obtained from Landsat, or other remotely-sensed products? Providing detail on the input datasets will greatly assist any effort to replicate this method in another region.
 
