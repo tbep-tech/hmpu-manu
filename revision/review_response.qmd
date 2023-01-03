@@ -60,7 +60,7 @@ Line 304-316. The determination of potential repair area lacks quantitative basi
      First, the following was added to the introduction on line 96: "These opportunity areas provide a first assessment of where restoration could occur, where on the ground assessments could be pursued to further quantify restoration potential."  
 
      Second, the following was added to the methods on line 197: "The identification of these areas on a broad spatial scale serves as a planning tool for restoration practitioners, where follow-up assessments are expected to more fully quantify restoration potential at selected sites."
-"
+
 Figure 1. The classification criteria for land use types are confused. I suggest using the Ramsar Convention classification system.
 
 * __Response__: The classification criteria used in the figure was based on the FLUCCS approach described in the text (lines 157), with some categories combined for clarity in the figure. For example, "urban/open lands" includes 13 FLUCCS categories considered relevant for combining and displaying together in the map as a single category to show the extent of development in the Tampa Bay watershed.  The figure caption was revised to describe this approach. An additional citation to @Kawula18 was also added in the text and figure caption. This classification was chosen as this is the standard approach used for the entire state of Florida.  

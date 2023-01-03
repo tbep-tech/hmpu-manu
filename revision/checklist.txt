@@ -1,0 +1,5 @@
+1. Manually remove figures from text, place in folder named as Figure1, Figure2, etc.
+2. Change Figure header to Figure captions
+3. Format table captions, verify correct order in text
+4. Save as PDF for submission
+6. Remove line numbers from supplement
