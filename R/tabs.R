@@ -21,8 +21,8 @@ totab <- tibble(
 )
 
 thm <- function(x){
-  flextable::width(x, width = 1.75, j = 1) %>%
-    flextable::width(width = 4.75, j = 2) %>%
+  flextable::width(x, width = 2.25, j = 1) %>%
+    flextable::width(width = 4.25, j = 2) %>%
     # flextable::width(width = 2.75, j = 7) %>%
     fontsize(size = 8, part = 'all') %>%
     flextable::padding(padding = 0, part = 'all')

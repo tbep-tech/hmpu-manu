@@ -1,0 +1,61 @@
+---
+format: 
+  docx:
+    reference-doc: my_styles.docx
+    number-sections: false
+bibliography: ../refs.bib
+csl: ../frontiers-in-ecology-and-evolution.csl
+---
+
+Below are our itemized responses to your comments. Thank you for your time in reviewing the content before a final decision is made. 
+
+Line 29: Remove “restoration planning” from the list of keywords as these words already appear in the title of your manuscript. You are welcome to replace them with (an)other word(s)
+
+* __Response__: Removed and added "habitat loss".
+
+Line 93/94: Replace the comma with “and, i.e. “…could occur and where…”
+
+* __Response__: Replaced comma with "and".
+
+Line 161: Add in brackets the hectare equivalent of “0.25 acres” seeing that all the results reported in your
+manuscript is in hectares.
+
+* __Response__: Added hectares equivalent. 
+
+Line 188: Consider replacing “taking” with “calculating”
+
+* __Response__: Replaced.
+
+Line 227: Add a full stop after “watershed”
+
+* __Response__: Added.
+
+Line 398: How do you align this sentence with your statement in Line 292-293 “This increase may represent improved ground-truthing and photointerpretation, rather than a true increase in coverage.” I suggest you rephrase the sentence in 3.1 to state that this increase may also be due to improved ground-truthing and photointerpretation (and leave out the second part).
+
+* __Response__: The statement on line 292-293 was referring to oyster bars, not seagrass.  The sentence was revised for clarity: "The increase in oyster bars may represent improved ground-truthing and photointerpretation."
+
+Line 420-421: What do you mean by “in place of mangroves”? Do you mean that the increased anthropogenic water withdrawal favour mangrove forests? If so, then rephrase to make the meaning clearer.
+
+* __Response__: Sentence was rephrased as "Anthropogenic water withdrawals have also reduced freshwater flows reaching tidal marshes, contributing to reductions in coverage of key species (e.g., *Juncus roemerianus*) that have favored mangroves (Raabe et al., 2012)."
+
+Table 1: Increase size of column 1 so that the text does not run into the 2nd column
+
+* __Response__: Done.
+
+Table 5: Please explain in the title, table or in the text what you mean by “out-decade”. Also be consistent in the use of “out-decade” vs “out decade” in the table.
+
+* __Response__: Revised to "each decade".
+
+References (Line 600 to end): Please double check the titles of the manuscripts as several references do not contain capitals in their titles, e.g.
+
+Line 604: tampa bay
+
+Line 609: rio grande and mexico
+
+Line 615: spartina
+
+Line 626: california
+
+* __Response__: Corrected all references where capitals were needed.
+
+
